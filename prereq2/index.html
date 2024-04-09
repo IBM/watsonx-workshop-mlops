@@ -1,0 +1,1256 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../prereq1/">
+      
+      
+        <link rel="next" href="../assets/">
+      
+      
+      <link rel="icon" href="../images/IBM_logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+    
+    
+      
+        <title>Pre-requirements 2 - Environment Configuration - watsonx MLOps Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#create-the-required-cp4d-role" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="watsonx MLOps Workshop" class="md-header__button md-logo" aria-label="watsonx MLOps Workshop" data-md-component="logo">
+      
+  <img src="../images/IBM_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            watsonx MLOps Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Pre-requirements 2 - Environment Configuration
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../prereq1/" class="md-tabs__link">
+          
+  
+  Pre-requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../trainai/" class="md-tabs__link">
+          
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../demo-assistant/" class="md-tabs__link">
+          
+  
+  Additional Topics
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="watsonx MLOps Workshop" class="md-nav__button md-logo" aria-label="watsonx MLOps Workshop" data-md-component="logo">
+      
+  <img src="../images/IBM_logo.png" alt="logo">
+
+    </a>
+    watsonx MLOps Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Pre-requirements
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Pre-requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prereq1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating an Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Configuring the Environment
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Configuring the Environment
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-required-cp4d-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the required CP4D role
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#give-the-administrator-role-all-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Give the Administrator Role all permissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-required-users-in-cp4d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the required users in CP4D
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Upload
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform connection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#db2-access-to-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Db2 access to users
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment spaces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-factsheets-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Factsheets inventory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watson-openscale-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Watson OpenScale Setup
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assets used
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Labs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trainai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Train AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cicd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MLOps CI/CD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Pipelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitorai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitor AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional Topics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Additional Topics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demo-assistant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Assistant Demo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-required-cp4d-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the required CP4D role
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#give-the-administrator-role-all-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Give the Administrator Role all permissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-the-required-users-in-cp4d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create the required users in CP4D
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Upload
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Platform connection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#db2-access-to-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      Db2 access to users
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deployment-spaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment spaces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-factsheets-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Create Factsheets inventory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watson-openscale-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Watson OpenScale Setup
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Configuring the Environment</h1>
+
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ask your instructor if these pre-requirements have already been done for your workshop. You can skip this section in that case.</p>
+</div>
+<p>This document contains the details for initially configuring your Cloud Pak for Data environment so it's ready to follow this lab. Instructions assume you already have access to a Cloud Pak for Data environment as the admin user. If not, please follow the instructions in the <a href="../prereq1/">Request an environment</a> section.</p>
+<h2 id="create-the-required-cp4d-role">Create the required CP4D role</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>A new role will be created with the permissions the workshop attendees need.</p>
+</div>
+<ol>
+<li>
+<p>Login to CP4D as the admin user.</p>
+<p><img alt="Screenshot" src="../images/prereq2/Login.png"></p>
+</li>
+<li>
+<p>Navigate to <strong>Access control</strong> by clicking on the navigation menu (top left hamburger menu) and then clicking <strong>Administration Access control</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/AccessControl.png"></p>
+</li>
+<li>
+<p>Go to the <strong>Roles</strong> tab and click <strong>New role</strong></p>
+<p><img alt="Screenshot" src="../images/prereq2/NewRole.png"></p>
+</li>
+<li>
+<p>Set the role name <strong>MLOps Workshop</strong> and add the following permissions:</p>
+<ul>
+<li>Catalogs &gt; Access Catalogs</li>
+<li>Deployments &gt; Create deployment spaces</li>
+<li>Deployments &gt; Monitor deployment activity</li>
+<li>Projects &gt; Create projects</li>
+<li>Projects &gt; Monitor project workloads</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>Next</strong> then <strong>Create</strong> to create the new role.</p>
+<p><img alt="Screenshot" src="../images/prereq2/CreateRole.png"></p>
+</li>
+</ol>
+<h2 id="give-the-administrator-role-all-permissions">Give the Administrator Role all permissions</h2>
+<ol>
+<li>
+<p>From the <strong>Access Control</strong> menu, go to tab <strong>Roles</strong> and open the <em>Administrator Role</em>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/AdministratorRole.png"></p>
+</li>
+<li>
+<p>Click <strong>Add Permissions +</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/AddPermissions.png"></p>
+</li>
+<li>
+<p>Select <strong>all available permissions</strong>, then click <strong>Add N permissions</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/AddNPermissions.png"></p>
+</li>
+</ol>
+<h2 id="create-the-required-users-in-cp4d">Create the required users in CP4D</h2>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In this workshop, attendees will be sharing a single environment to optimize the available hardware resources.</p>
+</div>
+<p>Create one user per attendee numbering them in ascending order, like this:</p>
+<table>
+<thead>
+<tr>
+<th>Full name</th>
+<th>Username</th>
+<th>Password</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user1</td>
+<td>user1</td>
+<td>user1</td>
+<td>MLOps Workshop</td>
+</tr>
+<tr>
+<td>user2</td>
+<td>user2</td>
+<td>user2</td>
+<td>MLOps Workshop</td>
+</tr>
+<tr>
+<td>user3</td>
+<td>user3</td>
+<td>user3</td>
+<td>MLOps Workshop</td>
+</tr>
+<tr>
+<td>userX</td>
+<td>userX</td>
+<td>userX</td>
+<td>MLOps Workshop</td>
+</tr>
+</tbody>
+</table>
+<p>The way you create users in CP4D will depend on the method you followed to deploy the environment in the section <a href="../prereq1/">Request an Environment</a>:</p>
+<ol>
+<li>
+<p>If you used the <em>pre-installed environment</em> or the CP4D deployer, login CP4D as the admin user, then go to <strong>Administration &gt; Access Control</strong>. You can create the users there.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Create your users with a Full Name. If they don't have a full name, AI Factsheets will fail when a new use case is created.</p>
+</div>
+</li>
+<li>
+<p>If you installed CP4D manually, the IAM Service should be active. Therefore, add a new Openshift htpasswd-based Auth Provider with the workshop users. See <a href="https://docs.openshift.com/container-platform/4.14/authentication/identity_providers/configuring-htpasswd-identity-provider.html">this Red Hat's Documentation</a> for information on how to do it. Login with each user in Openshift so they're active, then assign them the workshop role in CP4D <strong>Administration &gt; Access Control</strong></p>
+</li>
+</ol>
+<h2 id="data-upload">Data Upload</h2>
+<p>In this section, you will upload the data in <a href="../assets/data/customer_training_data.csv">customer_training_data.csv</a> to the Db2 database you created in section <a href="../prereq1/">Request an Environment</a>. Download the file to your local computer: <a href="../assets/data/customer_training_data.csv">customer_training_data.csv</a>.</p>
+<ol>
+<li>
+<p>Login CP4D with the admin user.</p>
+</li>
+<li>
+<p>Navigate to Databases by clicking the Navigation menu and selecting <strong>Data &gt; Databases</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/Database.png"></p>
+</li>
+<li>
+<p>Find the database you created. Click the <strong>3-dot menu</strong> and then <strong>Open database</strong>. If you get an error related to the Data Management Console, wait for some minutes then try again. If the page just doesn't load, try to open it in an incognito window.</p>
+<p><img alt="Screenshot" src="../images/prereq2/image30.png"></p>
+</li>
+<li>
+<p>Click the <strong>Summary</strong> drop down, expand <strong>Load</strong> drop down and select <strong>Load Data</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/image31.png"></p>
+</li>
+<li>
+<p>Click the <strong>browse files</strong> link and select the <strong>customer_training_data.csv</strong> file you downloaded before. Then click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/image32.png"></p>
+</li>
+<li>
+<p>On the schema page, click <strong>New schema +</strong>, specify the schema name as <strong>CUSTOMER</strong> and click <strong>Create</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For future uploads of data sets to the CUSTOMER schema, you can select the CUSTOMER schema if it is already created.</p>
+</div>
+<p><img alt="Screenshot" src="../images/prereq2/image33.png"></p>
+</li>
+<li>
+<p>On the Table page, click <strong>New table +</strong> (annotated with red oval), provide a table name as <strong>CUSTOMER_TRAINING_DATA</strong> (annotated with red rectangle) and click <strong>Create</strong> (annotated with red arrow).</p>
+<p><img alt="Screenshot" src="../images/prereq2/image34.png"></p>
+</li>
+<li>
+<p>Select the <strong>CUSTOMER_TRAINING_DATA</strong> as the table to upload data to (annotated with red rectangle) and click <strong>Next</strong> twice (annotated with red arrow).</p>
+<p><img alt="Screenshot" src="../images/prereq2/image35.png"></p>
+</li>
+<li>
+<p>Click <strong>Begin Load</strong> (annotated with red arrow) to begin loading the csv file into the CUSTOMER_TRAINING_DATA table on your Db2 instance which is provisioned on the same Cloud Pak for Data cluster.</p>
+<p><img alt="Screenshot" src="../images/prereq2/image38.png"></p>
+</li>
+<li>
+<p>The load operation will run for a minute or two and you can monitor progress through the steps.</p>
+<p><img alt="Screenshot" src="../images/prereq2/image39.png"></p>
+</li>
+<li>
+<p>When data is loaded, you should see a summary message indicating the data load job succeeded.</p>
+<p><img alt="Screenshot" src="../images/prereq2/image40.png"></p>
+</li>
+</ol>
+<h2 id="platform-connection">Platform connection</h2>
+<p>Create a Platform Connection named <strong>BLUDB</strong> that connects to your Db2 Database. You can use the internal Db2 service name for this:</p>
+<ol>
+<li>
+<p>To get the Db2 Deployment ID, go to the Databases menu <strong>Data &gt; Databases</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/Database.png"></p>
+</li>
+<li>
+<p>Find the database you created. Click the <strong>3-dot menu</strong> and then <strong>Details</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/Details.png"></p>
+</li>
+<li>
+<p>Copy the <strong>Deployment ID</strong>, in this example it's <em>db2oltp-1712170077943241</em>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/DeploymentID.png"></p>
+</li>
+<li>
+<p>Go to <strong>Menu &gt; Data &gt; Platform Connections</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/PlatformConnections.png"></p>
+</li>
+<li>
+<p>Click <strong>New Connection +</strong></p>
+<p><img alt="Screenshot" src="../images/prereq2/NewConnection.png"></p>
+</li>
+<li>
+<p>Select the <strong>IBM Db2</strong> connector and click <strong>Select</strong></p>
+<p><img alt="Screenshot" src="../images/prereq2/Db2Connector.png"></p>
+</li>
+<li>
+<p>Insert the following values:</p>
+<ul>
+<li><strong>Name</strong>: BLUDB</li>
+<li><strong>Description</strong>: BLUDB Db2 Database</li>
+<li><strong>Database</strong>: BLUDB</li>
+<li><strong>Hostname</strong>: c-&lt;DeploymentID&gt;-db2u-engn-svc (&lt;DeploymentID&gt; being the Db2 ID you got before. In this example: <em>c-db2oltp-1712170077943241-db2u-engn-svc</em>)</li>
+<li><strong>Port</strong>: 50000</li>
+<li><strong>Username</strong>: admin (or your CP4D Administrator username)</li>
+<li><strong>Password</strong>: admin's password</li>
+</ul>
+<p>Then click <strong>Test Connection</strong> to make sure the connection is successful. If it is, click <strong>Create</strong></p>
+<p><img alt="Screenshot" src="../images/prereq2/CreateConnection.png"></p>
+</li>
+</ol>
+<h2 id="db2-access-to-users">Db2 access to users</h2>
+<ol>
+<li>
+<p>Go to your Db2 Database and select the option <strong>Manage access</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/Db2Permissions.png"></p>
+</li>
+<li>
+<p>Add all workshop users with the role <strong>User</strong>.</p>
+</li>
+<li>
+<p>Now open the Database and go to <strong>Menu &gt; Run SQL</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/RunSQL.png"></p>
+</li>
+<li>
+<p>Run the following SQL code. This will grant the workshops users access to the CUSTOMER training data.</p>
+<div class="copy highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER0</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER1</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER2</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER3</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER4</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER5</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER6</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER7</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER8</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER9</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER10</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER11</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER12</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER13</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER14</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER15</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER16</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER17</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER18</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER19</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">CUSTOMER</span><span class="p">.</span><span class="n">CUSTOMER_TRAINING_DATA</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">USER20</span><span class="p">;</span>
+</code></pre></div>
+</li>
+</ol>
+<h2 id="deployment-spaces">Deployment spaces</h2>
+<ol>
+<li>
+<p>Create two new Deployment Spaces:</p>
+<ul>
+<li>Deployment space <strong>churnUATspace</strong> with Deployment Stage <strong>Testing</strong></li>
+<li>Deployment space <strong>churn_prod_space</strong> with Deployment Stage <strong>Production</strong></li>
+</ul>
+</li>
+<li>
+<p>Give the role <strong>Editor</strong> to the group "All Users" on both deployment spaces.</p>
+<p><img alt="Screenshot" src="../images/prereq2/spaceUAT.png">
+<img alt="Screenshot" src="../images/prereq2/spaceProd.png"></p>
+</li>
+</ol>
+<h2 id="create-factsheets-inventory">Create Factsheets inventory</h2>
+<ol>
+<li>
+<p>Go to menu <strong>AI Governance &gt; AI use cases</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/spaceUAT.png"></p>
+</li>
+<li>
+<p>Click the <strong>Manage settings</strong> button.</p>
+<p><img alt="Screenshot" src="../images/prereq2/manageSettings.png"></p>
+</li>
+<li>
+<p>In the <strong>Inventories</strong> tab, click <strong>New inventory +</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/newInventory.png"></p>
+</li>
+<li>
+<p>Insert the name <strong>AI_inventory</strong> then click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/createInventory.png"></p>
+</li>
+<li>
+<p>Click <strong>Add collaborators</strong> then <strong>Add user group</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/addGroup.png"></p>
+</li>
+<li>
+<p>Select the <strong>Editor</strong> role. Then search for the group <strong>All users</strong> and add it. Finally, click <strong>Add</strong></p>
+<p><img alt="Screenshot" src="../images/prereq2/allUsersEditor.png"></p>
+</li>
+<li>
+<p>Click the <strong>x</strong> button to close this window.</p>
+<p><img alt="Screenshot" src="../images/prereq2/closeInventory.png"></p>
+</li>
+</ol>
+<h2 id="watson-openscale-setup">Watson OpenScale Setup</h2>
+<ol>
+<li>
+<p>Go to the menu <strong>Services &gt; Instances</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/Instances.png"></p>
+</li>
+<li>
+<p>Find the <strong>openscale-defaultinstance</strong>, click the open drop down and select <strong>Manage access</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/OpenscaleAccess.png"></p>
+</li>
+<li>
+<p>Click <strong>Add users +</strong> and add all workshop users with role <em>Editor</em>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/OpenscaleUsers.png"></p>
+</li>
+<li>
+<p>Go back to the list of Service Instnaces. Find the <strong>openscale-defaultinstance</strong> instance, click the open drop down and select <strong>Open</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/Open.png"></p>
+</li>
+<li>
+<p>Click <strong>Manual setup</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/ManualSetup.png"></p>
+</li>
+<li>
+<p>In the <strong>Database</strong> tab, click pencil icon to configure the database where model payload, predictions as well as calculated quality metrics will be stored.</p>
+<p><img alt="Screenshot" src="../images/prereq2/DatabaseEdit.png"></p>
+</li>
+<li>
+<p>Choose <strong>Db2</strong> as database type and fill teh same Db2 credentials we used for the Platform Connection. Then click <strong>Connect</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/DatabaseConnect.png"></p>
+</li>
+<li>
+<p>For Schema, select <strong>Auto-create a new schema</strong> and click <strong>Save</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/DatabaseSchema.png"></p>
+</li>
+<li>
+<p>Go to the <strong>Machine learning providers</strong> tab and click <strong>Add machine learning provider</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/MLProvider.png"></p>
+</li>
+<li>
+<p>Provide a Name <strong>WML</strong> and Description (<strong>Watson Machine Learning provider on Cloud Pak for Data</strong>) for the machine learning provider by clicking the pencil icons. Then click the pencil icon next to Connection.</p>
+<p><img alt="Screenshot" src="../images/prereq2/WML.png"></p>
+</li>
+<li>
+<p>For the Connection configuration, you need to specify a number of parameters for OpenScale to connect to the Watson Machine Learning as the provider:</p>
+<ul>
+<li><strong>Service provider</strong>: Select <strong>Watson Machine Learning (V2)</strong> service</li>
+<li><strong>Location</strong>: Local</li>
+<li><strong>Deployment space</strong>: churnUATspace</li>
+<li><strong>Environment type</strong>: Pre-production</li>
+</ul>
+<p>Then click <strong>Save</strong>.</p>
+<p><img alt="Screenshot" src="../images/prereq2/WMLConfiguration.png"></p>
+</li>
+</ol></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 IBM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.instant", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  </body>
+</html>

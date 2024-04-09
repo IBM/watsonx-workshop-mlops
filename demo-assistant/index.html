@@ -1,0 +1,1239 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../monitorai/">
+      
+      
+      
+      <link rel="icon" href="../images/IBM_logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+    
+    
+      
+        <title>Churn Aware Assistant - watsonx MLOps Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pre-requisites" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="watsonx MLOps Workshop" class="md-header__button md-logo" aria-label="watsonx MLOps Workshop" data-md-component="logo">
+      
+  <img src="../images/IBM_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            watsonx MLOps Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Churn Aware Assistant
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../prereq1/" class="md-tabs__link">
+          
+  
+  Pre-requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../trainai/" class="md-tabs__link">
+          
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Additional Topics
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="watsonx MLOps Workshop" class="md-nav__button md-logo" aria-label="watsonx MLOps Workshop" data-md-component="logo">
+      
+  <img src="../images/IBM_logo.png" alt="logo">
+
+    </a>
+    watsonx MLOps Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pre-requirements
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Pre-requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prereq1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating an Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prereq2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring the Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assets used
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Labs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trainai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Train AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cicd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MLOps CI/CD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Pipelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitorai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitor AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Additional Topics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Additional Topics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Virtual Assistant Demo
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Assistant Demo
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Requisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-functions-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Functions Wrapper
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watson-assistant-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Watson Assistant Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-Requisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud-functions-wrapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cloud Functions Wrapper
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#watson-assistant-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Watson Assistant Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Virtual Assistant Demo</h1>
+
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This lab is pending an update, as deprecated features are being used. However, it can give you an idea on how the model can be consumed in a real use case.</p>
+</div>
+<p>This lab highlights one scenario to illustrate how AI models can be infused into an application to improve customer interaction. Specifically, you will learn to develop a solution for Personalizing Customer Experience by infusing the churn prediction AI model in your Virtual Assistant. In the previous sections of the workshop, you have learned how to leverage Cloud Pak for Data to execute the following tasks:</p>
+<ol>
+<li>
+<p>Access data from different sources.</p>
+</li>
+<li>
+<p>Catalog and apply enterprise governance to that data.</p>
+</li>
+<li>
+<p>Train AI models using Jupyter notebooks and AutoAI capabilities.</p>
+</li>
+<li>
+<p>Deploy trained AI models to preProd (or QA) deployment spaces for validation.</p>
+</li>
+<li>
+<p>Validate AI model for fairness, quality, and drift using Watson OpenScale.</p>
+</li>
+<li>
+<p>Once model validation is approved, automate CI/CD process to push models from UAT (Pre-Prod) deployment spaces to Prod deployment spaces.</p>
+</li>
+<li>
+<p>Monitor AI models in production using Watson OpenScale for accuracy, drift, bias, and explainability to deliver trusted AI.</p>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>As a quick reminder, the business use case involves improving the customer experience by offering a personalized interaction from the virtual agent based on the likelihood of a customer to churn.</p>
+</div>
+<h2 id="pre-requisites">Pre-Requisites</h2>
+<p>Watson Assistant is offered as a cartridge on Cloud Pak for Data as well as it is offered as a managed service on IBM Cloud. The lab teaches how to infuse the trained AI model for churn prediction in a Virtual Assistant designed with Watson Assistant on IBM Public Cloud.</p>
+<p>To complete the lab, you will need to setup and access an IBM Public Cloud account.</p>
+<h2 id="cloud-functions-wrapper">Cloud Functions Wrapper</h2>
+<p>In this section, we will create an IBM Cloud Functions wrapper to the model we trained and deployed in the previous sections. IBM Cloud Functions is IBM’s Function as a Service (FaaS) cloud computing service that allows you to execute code in response to events without dealing with the complexity of setting up the required infrastructure.</p>
+<ol>
+<li>
+<p>Log into your IBM Cloud account by navigating to <a href="https://cloud.ibm.com">https://cloud.ibm.com</a> and providing your log-in credentials. If     you don’t have an IBM Cloud account, use the links on the landing page to create a free IBM Cloud account.</p>
+</li>
+<li>
+<p>Logged into your IBM Cloud account, navigate to the IBM Cloud Menu and select <strong>Functions</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image1.png"></p>
+</li>
+<li>
+<p>On the IBM Cloud Functions page, click on <strong>Start Creating</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image2.png"></p>
+</li>
+<li>
+<p>Click <strong>Create Action</strong>. Alternatively, you can also click Actions in the left navigation column and then click Create on the Action page that loads.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image3.png"></p>
+</li>
+<li>
+<p>On the Create Action page, provide a name for your Cloud Functions action, select “Python 3.7” for the Runtime and click <strong>Create</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note that you can create the action using a different Runtime but in this lab we’re using Python 3.</p>
+</div>
+<p><img alt="Screenshot" src="../images/demo-assistant/image4.png"></p>
+</li>
+<li>
+<p>Replace the contents of the Code section of the action with the code shown below.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Use the copy button in the code snippet below to keep the right format of the content when pasting.</p>
+</div>
+<div class="copy highlight"><pre><span></span><code><span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># main() will be run when you invoke this action</span>
+<span class="c1">#</span>
+<span class="c1"># @param Cloud Functions actions accept a single parameter, which must be a JSON object.</span>
+<span class="c1">#</span>
+<span class="c1"># @return The output of this action, which must be a JSON object.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">requests</span><span class="o">,</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+
+<span class="k">def</span> <span class="nf">getToken</span><span class="p">(</span><span class="n">cpd_url</span><span class="p">,</span><span class="n">cpd_username</span><span class="p">,</span><span class="n">cpd_password</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">cpd_url</span> <span class="o">+</span> <span class="s1">'/v1/preauth/validateAuth'</span>
+    <span class="c1">#print("get token url: ", url)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="n">cpd_username</span><span class="p">,</span><span class="n">cpd_password</span><span class="p">),</span><span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1">#print("response: ", response)</span>
+    <span class="n">wml_token</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">"accessToken"</span><span class="p">]</span>
+    <span class="c1">#print("token: ", wml_token)</span>
+    <span class="k">return</span> <span class="n">wml_token</span>
+
+<span class="k">def</span> <span class="nf">predictChurn</span><span class="p">(</span><span class="n">wml_token</span><span class="p">,</span><span class="n">scoring_url</span><span class="p">,</span><span class="n">flds</span><span class="p">,</span><span class="n">vals</span><span class="p">):</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span> <span class="s1">'Authorization'</span><span class="p">:</span> <span class="s1">'Bearer '</span> <span class="o">+</span> <span class="n">wml_token</span><span class="p">}</span>
+
+    <span class="n">payload_scoring</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"input_data"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"fields"</span><span class="p">:</span> <span class="n">flds</span><span class="p">,</span> <span class="s2">"values"</span><span class="p">:</span> <span class="n">vals</span><span class="p">}]}</span>
+    <span class="n">response_scoring</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">scoring_url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload_scoring</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">churn</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_scoring</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">churn</span>
+
+<span class="k">def</span> <span class="nf">getProb</span><span class="p">(</span><span class="n">prediction</span><span class="p">):</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s1">'predictions'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'values'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">pred</span> <span class="o">==</span> <span class="s1">'T'</span><span class="p">:</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s1">'predictions'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'values'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="n">prediction</span><span class="p">[</span><span class="s1">'predictions'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'values'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">prob</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="n">cpd_url</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="s1">'cpd_url'</span><span class="p">]</span>
+    <span class="n">cpd_username</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="s1">'cpd_username'</span><span class="p">]</span>
+    <span class="n">cpd_password</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="s1">'cpd_password'</span><span class="p">]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">scoring_url</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="s1">'scoring_url'</span><span class="p">]</span>
+        <span class="n">flds_array</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="s1">'fields'</span><span class="p">])</span>
+        <span class="n">vals_array</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="s1">'values'</span><span class="p">])</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"error"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"error"</span><span class="p">:</span> <span class="s2">"not all required parameters are provided. Please make sure you pass the scoring_url, fields, and  values parameters"</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="n">wml_token</span> <span class="o">=</span> <span class="n">getToken</span><span class="p">(</span><span class="n">cpd_url</span><span class="p">,</span><span class="n">cpd_username</span><span class="p">,</span><span class="n">cpd_password</span><span class="p">)</span>
+    <span class="n">churn_prediction</span> <span class="o">=</span> <span class="n">predictChurn</span><span class="p">(</span><span class="n">wml_token</span><span class="p">,</span><span class="n">scoring_url</span><span class="p">,</span><span class="n">flds_array</span><span class="p">,</span><span class="n">vals_array</span><span class="p">)</span>
+    <span class="c1">#print("churn prediction: ", churn_prediction)</span>
+    <span class="n">predlabel</span> <span class="o">=</span> <span class="n">churn_prediction</span><span class="p">[</span><span class="s1">'predictions'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'values'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"predlabel: "</span><span class="p">,</span> <span class="n">predlabel</span><span class="p">)</span>
+    <span class="n">predprob</span> <span class="o">=</span> <span class="n">getProb</span><span class="p">(</span><span class="n">churn_prediction</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"predprob: "</span><span class="p">,</span> <span class="n">predprob</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"label"</span><span class="p">:</span> <span class="n">predlabel</span><span class="p">,</span> <span class="s2">"prob"</span><span class="p">:</span><span class="n">predprob</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">response</span>
+</code></pre></div>
+<p>After you paste the code, click <strong>Save</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image5.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Feel free to review the simple code to understand what it does. It gets a token from IBM Cloud Pak for Data using the username and password credentials that you provided and then makes a call to the deployed machine learning model using that token to predict churn.</p>
+</div>
+</li>
+<li>
+<p>Next, click on <strong>Parameters</strong> in the left column and click <strong>Add Parameter</strong> to provide required parameters to pass to the code. Specifically, this is where you can specify authentication information like Cloud Pak for Data URL, Cloud Pak for Data username, and Cloud Pak for Data password. For this action, we need three parameters:</p>
+<ul>
+<li><strong>cpd_url</strong></li>
+<li><strong>cpd_username</strong></li>
+<li><strong>cpd_password</strong></li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You should have these values from the previous sections in this workshop. The cpd_url is the url you used to access Cloud Pak for Data landing page. The cpd_username and cpd_password are the username and password you used to log into Cloud Pak for Data.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Please make sure to include double quotes "" when providing the values for the parameters.</p>
+</div>
+<p>Click <strong>Save</strong> after providing the parameters. </p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image6.png"></p>
+</li>
+<li>
+<p>Next, click back on <strong>Code</strong> (in the left navigation column) and test the action by clicking on <strong>Invoke with Parameters</strong> and provide the following values in the Change Action Input window. If you don't see the <strong>Invoke with Parameters</strong> option, press <strong>Save</strong>.</p>
+<ul>
+<li>
+<p><strong>scoring_url</strong> This would be the REST endpoint from the deployed machine learning model you trained in the previous section. If you don’t have the scoring_url for your deployed model, you can get it by logging into your Cloud Pak for Data instance, navigating to Menu <strong>Deployments</strong>, selecting the deployment space, and clicking on the specific deployment. On that page, you copy the <strong>Endpoint</strong> value as that will be your scoring_url.</p>
+</li>
+<li>
+<p><strong>fields</strong> The array of fields used needed for scoring the model to obtain likelihood of a user to churn.</p>
+</li>
+<li>
+<p><strong>values</strong> The array of values corresponding to the field</p>
+</li>
+</ul>
+<p><img alt="Screenshot" src="../images/demo-assistant/image7.png"></p>
+<p>The parameters you pass to your cloud function have the following format:</p>
+<div class="copy highlight"><pre><span></span><code><span class="p">{</span>
+<span class="nt">"scoring_url"</span><span class="p">:</span><span class="s2">"&lt;YOUR_DEPLOYED_WML_MODEL_SCORING_ENDPOINT&gt;"</span><span class="p">,</span>
+<span class="nt">"fields"</span><span class="p">:</span><span class="s2">"['ID', 'LONGDISTANCE', 'INTERNATIONAL', 'LOCAL', 'DROPPED', 'PAYMETHOD','LOCALBILLTYPE', 'LONGDISTANCEBILLTYPE',  'USAGE', 'RATEPLAN', 'GENDER', 'STATUS','CHILDREN', 'ESTINCOME', 'CAROWNER', 'AGE']"</span><span class="p">,</span>
+<span class="nt">"values"</span><span class="p">:</span><span class="s2">"[[1,27,6,33,1,'CC','Budget','Standard',400,3,'M','S',3,46000,'Y',38]]"</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Click <strong>Apply</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image8.png"></p>
+</li>
+<li>
+<p>Click <strong>Invoke</strong> and the action will run and returns the results which is the prediction and associated probabilities for the predicted value. Please note that the acutal value you get back may be different depending on what input values you provided.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image9.png"></p>
+</li>
+<li>
+<p>Next enable your cloud functions action as a web action to handles HTTP events. Click on <strong>Endpoints</strong> in the left column (annotated with red rectangle in figure below), then check the Enable as Web Action checkbox (annotated with red arrow in figure below) and click <strong>Save</strong> (annotated with red oval in figure below). Copy the URL (annotated with red arrow in figure below) as that will be needed to call this web action in subsequent steps of this lab. The url will have the following form:</p>
+<p><a href="https://eu-de.functions.cloud.ibm.com/api/v1/web/&lt;your">https://eu-de.functions.cloud.ibm.com/api/v1/web/&lt;your</a>_ibm_id&gt;_&lt;space&gt;/default/&lt;action_name&gt;</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image10.png"></p>
+</li>
+</ol>
+<h2 id="watson-assistant-setup">Watson Assistant Setup</h2>
+<p>In this section, we will use Watson Assistant service to create an assistant and associate it with a dialog skill. We will integrate the dialog skill with the Cloud Functions action via the Assistant’s webhook capability to personalize the user experience and respond to each user differently depending on the likelihood of that user churning.</p>
+<ol>
+<li>
+<p>Logged into your IBM Cloud account, navigate to your Watson Assistant service and launch it. If you don’t have a Watson Assistant service, click on <strong>Catalog</strong> (annotated with red oval in figure below) and select <strong>AI / Machine Learning</strong> from left navigation column (annotated with red rectangle in figure below) and then select <strong>Watson Assistant</strong>. Alternatively, you can type ‘Watson Assistant’ in the search bar (annotated with red arrow) and then select the Watson Asssistant services under Catalog Results.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image11.png"></p>
+</li>
+<li>
+<p>On the Watson Assistant page, select the <strong>Trial</strong> plan and click <strong>Create</strong>. You can optionally provide a name for your Watson Assistant service. Please note you can only have one Watson Assistant service with the Trial (or Lite) plan so if you have created one already please use that one. Once the service is created, click <strong>Launch Watson Assistant</strong> button.</p>
+</li>
+<li>
+<p>On the IBM Watson Assistant wizard, provide a name for your assistant and a description (optional) and click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant01.png"></p>
+</li>
+<li>
+<p>Fill the form with the following information, then click <strong>Next</strong>.</p>
+<ul>
+<li>Web</li>
+<li>N/A</li>
+<li>Developer</li>
+<li>I want to provide confident answers to common questions</li>
+</ul>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant02.png"></p>
+</li>
+<li>
+<p>Choose your favorite accent color then click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant03.png"></p>
+</li>
+<li>
+<p>Click <strong>Create</strong></p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant04.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>An assistant can handle Actions/dialog and/or search skills.</p>
+<ul>
+<li>
+<p>Actions/dialog skill uses natural language processing and machine learning technologies to understand user requests and respond appropriately based on specific responses you’ve created in the dialog. A dialog skill is ideal for handling FAQ-style requests. The Actions skill lets you have an assistant ready to chat quickly by composing step-by-step flows for a range of simple to complex conversations.</p>
+</li>
+<li>
+<p>A search skill helps in answering complex (long-tail) questions by finding relevant information in enterprise data sources. It leverages Watson Discovery for collecting, enriching and indexing the enterprise data sources.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>In this lab, we will work with the Dialog skill. In order to activate it, go to the <strong>Settings</strong> tab in the left-side menu and click <strong>Activate dialog</strong></p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant05.png"></p>
+</li>
+<li>
+<p>Next, we’ll add a new intent: <strong><em>#activate_device</em></strong>. The scenario we’re addressing is that of a user interacting with the chatbot to request activation of a new phone. Then depending on the churn likelihood of that user, the dialog will reflect different interactions. For users with high churn probability, the chatbot will connect them directly to an agent for a better experience. On the other hand, users with low churn probability, the chatbot will step them through the activation process directly. Note that for your use case, you can include other factors in deciding how to offer best experience for a user but in this lab, we would like to illustrate how to integrate the assistant with a trained machine learning model to offer a more personalized user experience.</p>
+<p>Click on <strong>Intents</strong> in the left navigation column and click <strong>Create intent</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant06.png"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note that you can also import intents directly from a csv file as explained in the <a href="https://cloud.ibm.com/docs/assistant?topic=assistant-intents#intents-import">Creating intents</a> section in the documentation.</p>
+</div>
+</li>
+<li>
+<p>Provide a name for your intent, #activate_device, and click <strong>Create intent</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant07.png"></p>
+</li>
+<li>
+<p>Next, we need to provide some sample utterances that indicate this new intent. Add the following examples one by one under the User example field:</p>
+<ul>
+<li><strong><em>can you help me activate my new device</em></strong></li>
+<li><strong><em>how can I activate my new phone</em></strong></li>
+<li><strong><em>I bought a new phone and would like to make it active with my number</em></strong></li>
+<li><strong><em>I would like to activate my device</em></strong></li>
+<li><strong><em>what do I need to do to map my number to my new phone</em></strong></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note that as you add more examples, Watson Assistant starts training. You can view that by clicking the <strong>Try it</strong> button.</p>
+</div>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant08.png"></p>
+</li>
+<li>
+<p>Next we need to update the dialog flow to handle device activation requests. Click on the <strong>back arrow</strong> (annotated with red rectangle in figure above; to the left of the intent name), then select <strong>Dialog</strong> in the left navigation column (annotated with red rectangle in figure below). Click the Menu on the <strong>"Welcome"</strong> node (three vertical dots annotated with red oval in figure below) and select <strong>Add node below</strong> (annotated with red arrow in figure below).</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant09.png"></p>
+</li>
+<li>
+<p>On the node window, provide a name for the node (for example, “activate device”, annotated with red arrow in figure below), specify the condition under “If assistant recognizes” as <strong><em>#activate_device</em></strong> intent and add a response “<em>Happy to help you with that</em>”. Once you’ve added these, click the <strong>Try it</strong> button (if not open already) and test it by typing “I would like to activate my device”. Note the response from the Assistant “happy to help you with that”.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant10.png"></p>
+</li>
+<li>
+<p>Next, create a new node following the same procedure to transfer the client to an agent. For demo purposes, we'd just simulate that the client is being transferred. In a real-life scenario, we would call the integration with the Call Center to call an agent.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant10b.png"></p>
+</li>
+<li>
+<p>Let's enable webhooks and connect the dialog node we just created to the web action we created in the previous section using IBM Cloud Functions. Click on <strong>Options</strong> in the left navigation column and then select <strong>Webhooks</strong> (annotated with red oval). In the URL field, provide the url you copied from the action Endpoint in IBM Cloud Functions (annotated with red rectangle in figure below). It will have the following:</p>
+<p><a href="https://es-de.functions.cloud.ibm.com/api/v1/web/&lt;your">https://es-de.functions.cloud.ibm.com/api/v1/web/&lt;your</a>_ibm_id&gt;_&lt;space&gt;/default/&lt;action_name&gt;</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Note that you should append a <strong>.json</strong> to the end of that url or else you will get an error in assistant. For example, the url could be:</p>
+<p><a href="https://es-de.functions.appdomain.cloud/api/v1/web/deb04933-f915-4141-a54b-ae5816c288a0/default/cpd">https://es-de.functions.appdomain.cloud/api/v1/web/deb04933-f915-4141-a54b-ae5816c288a0/default/cpd</a>_predictChurn.json</p>
+</div>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant11.png"></p>
+</li>
+<li>
+<p>After adding the URL in Webhook setup page, click back on the <strong>Dialog</strong> tab in left navigation column (annotated with red arrow in figure below) then select the “activate device” node and click <strong>Customize</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant12.png"></p>
+</li>
+<li>
+<p>On the Customize “activate device” page, turn <strong>Webhooks on</strong> by moving the slider from Off to On and click <strong>Apply</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can safely ignore the warning about the webhook URL not being configured.</p>
+</div>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant13.png"></p>
+</li>
+<li>
+<p>Once the Webhooks are turned On for this node, the “activate device” node gets updated to reflect the Parameters that can be provided to the webhook url. If you remember in the previous section, the cpd_predictChurn action required the following 3 parameters:</p>
+<ul>
+<li><strong>scoring_url</strong></li>
+<li><strong>fields</strong></li>
+<li><strong>values</strong></li>
+</ul>
+<p>Specify these parameters in the “activate device” node. The <strong><em>scoring_url</em></strong> is the endpoint for the deployed machine learning model. The <strong><em>fields</em></strong> is the list of features to pass to the model for predicting likelihood of churn. The <strong><em>values</em></strong> is the array of values for the fields specific to the user.</p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>Remember to include double quotes "" for the parameter values.</p>
+</div>
+<ul>
+<li>scoring_url: "#########"</li>
+<li>fields:"['ID', 'LONGDISTANCE', 'INTERNATIONAL', 'LOCAL', 'DROPPED', 'PAYMETHOD', 'LOCALBILLTYPE', 'LONGDISTANCEBILLTYPE', 'USAGE', 'RATEPLAN', 'GENDER', 'STATUS', 'CHILDREN', 'ESTINCOME', 'CAROWNER', 'AGE']"</li>
+<li>values: $user_vals</li>
+</ul>
+<p>The figure below shows how the parameters should be defined (annotated with red rectangles). To add new parameters, you click the <strong>Add parameter</strong> (annotated with red oval in figure below). Note that the values parameter is defined as a context variable which would be different for different end users. The actual field values can be obtained from a backend system when a user authenticates into the system and initiates the chatbot interaction. For purposes of this lab, we emulate this behavior by setting the context variable ($user_vals) directly using the “Manage Context” functionality in the “Try it” panel. In a production environment, this context variable would be set by a back end system once the user is authenticated.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant14b.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Now that we’ve integrated the webhook in the “activate device” node, we edit the response to handle the results from the cloud function indicating likelihood of user to churn. If the prediction likelihood returns False (‘F’), the virtual assistant will help the user with device activation process. If the prediction likelihood return True (‘T’), on the other hand, the virtual assistant will transfer the user to a human agent to guarantee best experience for the user.</p>
+</div>
+</li>
+<li>
+<p>Scroll down in the “activate device” node to the “Assistant responds” section and add the following condition and response:</p>
+<blockquote>
+<p><strong>IF ASSISTANT RECOGNIZES</strong> =&gt; $webhook_result_1 &amp;&amp; $webhook_result_1.label == "F"</p>
+<p><strong>RESPOND WITH</strong> =&gt; I would be happy to help you with activating your device</p>
+</blockquote>
+<p>You can either enter the condition and response values directly in this window or you can click the <strong>Customize response</strong> for a better view.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant15.png"></p>
+<p>If you click Customize response (gear icon next to the condition/response), you will see the following figure. The first condition (annotated with red oval) indicates that we have a valid context variable defined which means the webhook returned a valid response and save the value in <strong>$webhook_result_1</strong>. The second condition (annotated with red rectangle) indicates that the response from the churn prediction model is “F” (false); <strong>$webhook_result_1.label == “F”</strong>. For these conditions, the virtual assistant will respond with “Happy to help you with that request”. Click <strong>Save</strong> to save that dialog response.</p>
+<p>This effectively checks if the returned prediction is false (no churn) and if so, responds to assist the user with device activation.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image28.png"></p>
+</li>
+<li>
+<p>Back on the <em><u>activate device</u></em> node, click <strong>Add response</strong> and add the following condition.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image29.png"></p>
+<blockquote>
+<p><strong>IF ASSISTANT RECOGNIZES</strong> =&gt; $webhook_result_1 &amp;&amp; $webhook_result_1.label == "T"</p>
+<p><strong>RESPOND WITH</strong> =&gt; Thank you for being a great customer</p>
+</blockquote>
+<p><img alt="Screenshot" src="../images/demo-assistant/image30.png"></p>
+</li>
+<li>
+<p>Click on the arrow to move this response to be the second (above the anything_else response). <strong><em>anything_else</em></strong> response should always be the last condition.</p>
+</li>
+<li>
+<p>Click the Customize response (gear icon annotated with red arrow in figure above) to customize the response for the scenario when the churn prediction is true. In the “Configure response 2” window, click on <strong>Default to node settings</strong> (annotated with red arrow in figure below) and then select <strong>Jump to</strong> (annotated with red oval in figure below). This will take you back to the overall dialog flow so you can select which node to “Jump to”.</p>
+</li>
+<li>
+<p>Select the “Please transfer me to an agent” node (annotated with red rectangle in figure below) and click <strong>Respond</strong>. Click <strong>Save</strong> to close the Configure Response window.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image31.png"></p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant16.png"></p>
+</li>
+<li>
+<p>Next, we test the dialog. To emulate different users, click the Try it button (if the Try it out panel is not open already) and click on Manage Context (annotated with red arrow in figure below). Then add a context variable and call it <strong><em>user_vals</em></strong> (annotated with red oval in figure below) and hit <strong>Enter</strong>. Then enter the following value for the <strong><em>$user_vals</em></strong> context value where it says Enter value (annotated with red arrow in figure below).</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant17.png"></p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant18.png"></p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant19.png"></p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant20.png"></p>
+<blockquote>
+<p><strong>"[[1,27,6,33,1,'CC','Budget','Standard',400,3,'M','S',0,46000,'Y',38,'NC',4444333322221111]]"</strong></p>
+</blockquote>
+<p>The final context variables window should look as shown in figure below with the $user_vals context variable defined and assigned the value above. Click the X to go back to the Try it out window.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant21.png"></p>
+</li>
+<li>
+<p>Test the dialog flow in the Try it window by entering the following phrase:</p>
+<blockquote>
+<p><strong><em>I would like to activate my device</em></strong></p>
+</blockquote>
+<p>Note the response from Watson Assistant which corresponds to a “T” (true) churn prediction. To verify, click on <strong>Manage Context</strong>.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/image37.png"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>On the context page, note the $webhook_result_1 context variable. This $webhook_result_1 is the context variable that captures the response to the webhook call which we had defined to call the Cloud Function which in turn calls the deployed churn prediction model.</p>
+<p><img alt="Screenshot" src="../images/demo-assistant/assistant22.png"></p>
+</div>
+</li>
+<li>
+<p>Edit the $user_vals context variable by clicking on Manage Context, updating the values of $user_vals to the following values and then existing back to the Try it out window.</p>
+<blockquote>
+<p><strong>"[[1,27,6,33,1,'CC','Budget','Standard',400,3,'M','M',3,96000,'Y',38,'NC',4444333322221111]]"</strong></p>
+</blockquote>
+</li>
+<li>
+<p>Test the dialog flow again by entering the same phrase “I would like to activate my device”. The figure below shows the first response for the first set of values associated with user 1 (annotated with red oval) where the <strong><em>churn prediction is False</em></strong> as well as the second response for the second set of values associated with user 2 (annotated with red rectange) where the <strong><em>churn prediction is True</em></strong>.</p>
+<blockquote>
+<p>User 1 =&gt; values:
+"[[1,27,6,33,1,'CC','Budget','Standard',400,3,'M','M',3,46000,'Y',38]]"</p>
+</blockquote>
+<ul>
+<li>Churn Prediction: “False”</li>
+<li>Chatbot offers to assist with activating the user device</li>
+</ul>
+<blockquote>
+<p>User 2 =&gt; values:
+"[[1,27,6,33,7,'CC','Budget','Standard',400,3,'M','S',0,96000,'Y',38]]"</p>
+</blockquote>
+<ul>
+<li>
+<p>Churn Prediction: “True”</p>
+</li>
+<li>
+<p>Chatbot offers to transfer to a representative for a better end user
+experience.</p>
+</li>
+</ul>
+<p><img alt="Screenshot" src="../images/demo-assistant/image39.png"></p>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this lab, we illustrated how to infuse AI in a virtual assistant to personalize end user experience. We leveraged an AI model for churn prediction which was trained using AutoAI/notebook, deployed using Watson Machine Learning, and monitored for fairness, quality, drift using Watson OpenScale, all on Cloud Pak for Data.</p>
+<p>Then we infused that trained model in a virtual assistant with the help of cloud functions to call the REST endpoint for the ML model and to personalize the end user experience based on their likelihood to churn.</p>
+<p>The same approach can be leveraged for a variety of use cases across industries with even deeper personalization by including more end user features in the model and customizing the dialog interaction accordingly.</p>
+<p>For example, using a recommendation model, different users would see different products or offers being recommended based on their specific data.</p></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 IBM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.instant", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  </body>
+</html>

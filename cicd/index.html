@@ -1,0 +1,1463 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../trainai/">
+      
+      
+        <link rel="next" href="../pipelines/">
+      
+      
+      <link rel="icon" href="../images/IBM_logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.10">
+    
+    
+      
+        <title>Governed MLOps CI/CD - watsonx MLOps Workshop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="watsonx MLOps Workshop" class="md-header__button md-logo" aria-label="watsonx MLOps Workshop" data-md-component="logo">
+      
+  <img src="../images/IBM_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            watsonx MLOps Workshop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Governed MLOps CI/CD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../prereq1/" class="md-tabs__link">
+          
+  
+  Pre-requirements
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../trainai/" class="md-tabs__link">
+          
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../demo-assistant/" class="md-tabs__link">
+          
+  
+  Additional Topics
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="watsonx MLOps Workshop" class="md-nav__button md-logo" aria-label="watsonx MLOps Workshop" data-md-component="logo">
+      
+  <img src="../images/IBM_logo.png" alt="logo">
+
+    </a>
+    watsonx MLOps Workshop
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pre-requirements
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Pre-requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prereq1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creating an Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../prereq2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Configuring the Environment
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assets/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Assets used
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Labs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trainai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Train AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MLOps CI/CD
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    MLOps CI/CD
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-ai-model-propagation-across-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1 – AI Model Propagation across Environments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 1 – AI Model Propagation across Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-cpdctl-in-a-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using cpdctl in a Notebook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-the-production-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking the Production model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-git-based-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2 – Git-based Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 2 – Git-based Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-the-git-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparing the Git environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watson-studio-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Watson Studio integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-git-enabled-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Git-enabled project
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Pipelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitorai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Monitor AI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Additional Topics
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Additional Topics
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demo-assistant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Virtual Assistant Demo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-1-ai-model-propagation-across-environments" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 1 – AI Model Propagation across Environments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 1 – AI Model Propagation across Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-cpdctl-in-a-notebook" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using cpdctl in a Notebook
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-the-production-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking the Production model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercise-2-git-based-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exercise 2 – Git-based Flow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercise 2 – Git-based Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#introduction_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparing-the-git-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparing the Git environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watson-studio-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Watson Studio integration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-git-enabled-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating a Git-enabled project
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>MLOps CI/CD</h1>
+
+<div><h2 id="introduction">Introduction</h2>
+<p>As organizations scale adoption of AI models in production, it becomes more important to automate the process for testing, validating, and promoting such models from dev (development) to uat (user acceptance testing, also known as pre-prod, quality assurance or staging) to prd (production) environments.</p>
+<p>To enable such automation, it is important to be able to validate and monitor the performance of AI models (fairness, quality, drift, explainability) as well as automate the process of propagating the models and associated assets from one environment to another. A typical scenario for developing and promoting AI models includes the following sequence:</p>
+<ol>
+<li>
+<p>Data scientists explore multiple algorithms and techniques to train best performing AI model.</p>
+</li>
+<li>
+<p>Once satisfied with performance results, data science lead deploys the best performing model to a Pre-Prod deployment space.</p>
+</li>
+<li>
+<p>MLOps team configures Watson OpenScale to monitor and run validation tests against the model deployed in Pre-Prod space.</p>
+</li>
+<li>
+<p>Once model validation is approved, MLOps team propagates model from Pre-Prod to Prod.</p>
+</li>
+<li>
+<p>MLOps team configures Watson OpenScale to monitor the production model for fairness, quality and drift.</p>
+</li>
+</ol>
+<p>In this workshop, we cover two common approaches for implementing a
+governed MLOps methodology to enable the automation of propagating
+models from development through user acceptance testing (PreProd) to
+production:</p>
+<ol>
+<li>
+<p>Propagating data science assets including trained models from one environment to another.</p>
+</li>
+<li>
+<p>Git based automation where data assets and source code are checked into a git repository, git integration is leveraged for code management, and automation is leveraged for testing and validation in UAT (PreProd) and production environments.</p>
+</li>
+</ol>
+<p>Choosing which of these approaches to implement is mostly dictated by the use case and the preferred method of governance that an organization chooses to adopt. In this workshop, we highlight both approaches and how they can be implemented using Cloud Pak for Data.</p>
+<p>Before diving into the details of these approaches, it is helpful to quickly review the overall data science process and various tasks/activities performed by the data science team.</p>
+<p>Initially, data science team engages with business stakeholder to discuss the business problem to be addressed. After understanding and scoping the business problem, data scientists search and find data assets in the enterprise catalog that may be relevant and useful for training AI models to address the identified business problem.</p>
+<p>Data scientists experiment with various data visualizations and summarizations to get a sound understanding of available data. This is because real-world data is often noisy, incomplete, and may contain wrong or missing values. Using such data as-is can lead to poor models and wrong predictions.</p>
+<p>Once relevant data sets are identified, data scientists commonly apply “Feature Engineering” which is the task of defining and deriving new features from existing data features to train better-performing AI models. The feature engineering step includes aggregation and transformation of raw variables to create the features used in the analysis. Features in the original data may not have sufficient predictive influence and by deriving new features, data scientists train AI models that deliver better performance.</p>
+<p>Afterwards, data scientists train machine learning models using the cleansed data prepared in the previous steps. Data scientists train several machine learning models, evaluate them using a holdout data set (data not used at training time) and select the best model or multiple models (ensemble) to be deployed in the next phase. Model building usually also includes a hyperparameter optimization step, which aims at selecting the best set of model hyperparameters (i.e. parameters of the model itself), which are set before training starts to further increase model performance</p>
+<p>After data scientists build (train) an AI model that meets their performance criteria, they make that model available for other collaborators, such as software engineers, other data scientists, and business analysts, to validate (or quality test) the model before it gets deployed to production.</p>
+<p>Once a model has gone through the iterations of development, build, and test, the Machine Learning Operations (or MLOps) team deploys the model into production. Deployment is the process of configuring an analytic asset for integration with other applications or access by business users, to serve production workload at scale. Two most popular types of deployment are:</p>
+<ul>
+<li>
+<p><strong>Online</strong>: a real time request/response deployment option. When this deployment option is used, models or functions are invoked with a REST API. A single row or multiple rows of data can be passed in with the REST request.</p>
+</li>
+<li>
+<p><strong>Batch</strong>: a deployment option that reads and writes from/to a static data source. A batch deployment can be invoked with a REST API.</p>
+</li>
+</ul>
+<p>Keep in mind that in a hybrid multi-cloud world, development (dev), user-acceptance testing (uat), and production (prd) environment can be on-prem or in one of different cloud platforms. For example, the development environment can be hosted in a cloud platform but the production environment can be on-prem. Alternatively, the user acceptance testing environment can be on-prem while the production environment can be hosted on a public cloud platform.</p>
+<p>For some background on the model development and deployment in the AI Lifecycle Management process, please review the <a href="https://www.ibm.com/blogs/academy-of-technology/ai-model-lifecycle-management-white-paper/">white paper</a> or check the following blogs:</p>
+<ul>
+<li>
+<p><a href="https://www.ibm.com/cloud/blog/ai-model-lifecycle-management-overview">AI Model Lifecycle Management: Overview</a></p>
+</li>
+<li>
+<p><a href="https://www.ibm.com/cloud/blog/ai-model-lifecycle-management-build-phase">AI Model Lifecycle Management: Build</a></p>
+</li>
+<li>
+<p><a href="https://www.ibm.com/cloud/blog/ai-model-lifecycle-management-deploy-phase">AI Model Lifecycle Management: Deploy</a></p>
+</li>
+</ul>
+<p>Additionally, please review the <a href="https://medium.com/@rafal.bigaj/jenkins-ibm-cloud-pak-for-data-production-ready-delivery-pipelines-for-ai-12713ef04dc5"><strong>Jenkins + IBM Cloud Pak for Data == Production-ready Delivery Pipelines for AI</strong></a> blog to learn how to leverage cpdctl and Jenkins to design pipelines to enable automation in propagating AI models to production.</p>
+<p>Lastly, the following lab in this workshop shows how to use <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/latest?topic=services-watson-pipelines">Watson Studio Pipelines</a> to simplify the overall MLOps process by better orchestration of the various stages required for developing robust AI models.</p>
+<h2 id="exercise-1-ai-model-propagation-across-environments">Exercise 1 – AI Model Propagation across Environments</h2>
+<h3 id="introduction_1">Introduction</h3>
+<p>In this section, we illustrate the first approach leveraging <a href="https://github.com/IBM/cpdctl/">cpdctl</a>, a Cloud Pak for Data CLI (command line interface) tool, to automate the process of propagating trained models from one environment to another.</p>
+<p>In practice, the environments can exist in the same Cloud Pak for Data cluster or in completely different Cloud Pak for Data clusters hosted on different cloud platforms. For this lab, we will use the same Cloud Pak for Data cluster and illustrate how to use the <strong>cpdctl</strong> tool to propagate assets from the quality assurance (QA, also known as user acceptance testing) deployment space to the production deployment space. The process is identical to how you’d propagate models from one cluster to another as the cpdctl tool is designed to handle the hybrid multi-cloud seamlessly.</p>
+<h3 id="using-cpdctl-in-a-notebook">Using cpdctl in a Notebook</h3>
+<p>You will run a notebook to leverage cpdctl to copy assets from <em>churnUATspace</em> to <em>churn_prod_space</em>.</p>
+<ol>
+<li>
+<p>Navigate to your Customer Churn Prediction project.</p>
+</li>
+<li>
+<p>On the project page, click the <strong>Assets</strong> tab, then <strong>New Asset</strong> and select <strong>Jupyter notebook editor</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/ViewChurnCustomerProject.png"></p>
+<p><img alt="Screenshot" src="../images/cicd/SelectJNFromAsset.png"></p>
+</li>
+<li>
+<p>On the New notebook page, click the <strong>Local file</strong> tab and then browse to find the notebook file <a href="../assets/notebooks/CopyAssets_DeploymentSpace1_to_DeploymentSpace2.ipynb"><strong>CopyAssets_DeploymentSpace1_to_DeploymentSpace2.ipynb</strong></a> that you downloaded at the beginning of the workshop. Then click <strong>Create</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/JNCICD.png"></p>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>DO NOT RUN THE NOTEBOOK YET</p>
+</div>
+</li>
+<li>
+<p>The notebook will load in edit mode. <strong>DO NOT RUN THE NOTEBOOK YET</strong>, you must change some variable values to customize the environment URL and your Model Name. Go to the cell shown below:</p>
+<p><img alt="Screenshot" src="../images/cicd/Variables.png"></p>
+<p>You need to set the values of these variables by changing the values <span style="color:red">in red</span>. Use the following values and <strong>keep the single quotes</strong>:</p>
+<ul>
+<li>
+<p><strong>SOURCE_CPD_USERNAME</strong>: Your workshop username</p>
+</li>
+<li>
+<p><strong>SOURCE_CPD_PASSWORD</strong>: Your workshop password</p>
+</li>
+<li>
+<p><strong>SOURCE_CPD_URL</strong>: The URL that you use to access the CP4D workshop environment. The following is just an example:</p>
+<blockquote>
+<p><a href="https://cpd-cpd.apps.ocp-663004oi6y-lgmy.cloud.techzone.ibm.com">https://cpd-cpd.apps.ocp-663004oi6y-lgmy.cloud.techzone.ibm.com</a></p>
+</blockquote>
+</li>
+<li>
+<p><strong>TARGET_CPD_USERNAME</strong>: Your workshop username</p>
+</li>
+<li>
+<p><strong>TARGET_CPD_PASSWORD</strong>: Your workshop password</p>
+</li>
+<li>
+<p><strong>TARGET_CPD_URL</strong>: In this case, you're going to promote models between deployment spaces in the same environment. Therefore, use the same value as in the previous SOURCE_CPD_URL</p>
+</li>
+<li>
+<p><strong>SOURCE_DEPLOYMENT_SPACE_NAME</strong>: churnUATspace</p>
+</li>
+<li>
+<p><strong>TARGET_DEPLOYMENT_SPACE_NAME</strong>: churn_prod_space</p>
+</li>
+<li>
+<p><strong>TARGET_MODEL_NAME</strong>: &lt;YourUser&gt;_ChurnPredictionProd</p>
+</li>
+</ul>
+<p>This is an example for user0:</p>
+<p><img alt="Screenshot" src="../images/cicd/Variables02.png"></p>
+</li>
+<li>
+<p>Now run all the steps in the notebook. No error should be shown.</p>
+</li>
+</ol>
+<h3 id="checking-the-production-model">Checking the Production model</h3>
+<ol>
+<li>
+<p>Go to the <strong>Deployments</strong> menu to check that the model has been promoted to Production.</p>
+<p><img alt="Screenshot" src="../images/cicd/Deployments3.png"></p>
+</li>
+<li>
+<p>On the Deployments page, click the <strong>Spaces</strong> tab and select the <strong>churn_prod_space</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/DeploymentSpace.png"></p>
+</li>
+<li>
+<p>Go to the <strong>Deployments</strong> tab and click on the production deployment <strong>&lt;YourUser&gt;_ChurnPredictionProd</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/DeploymentsInDeploymentSpace.png"></p>
+</li>
+<li>
+<p>Click the <strong>Test</strong> tab. You're going to test the deployed model with some data. Go to the section JSON and introduce the following data:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use the Copy button in the following code section to keep the right format when pasting it.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Feel free to edit/change values and re-run the prediction to see how different features can impact the prediction.</p>
+</div>
+<div class="copy highlight"><pre><span></span><code><span class="p">{</span>
+<span class="nt">"input_data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="p">{</span>
+<span class="nt">"fields"</span><span class="p">:[</span><span class="s2">"ID"</span><span class="p">,</span><span class="s2">"LONGDISTANCE"</span><span class="p">,</span><span class="s2">"INTERNATIONAL"</span><span class="p">,</span><span class="s2">"LOCAL"</span><span class="p">,</span><span class="s2">"DROPPED"</span><span class="p">,</span><span class="w">    </span><span class="s2">"PAYMETHOD"</span><span class="p">,</span><span class="s2">"LOCALBILLTYPE"</span><span class="p">,</span><span class="s2">"LONGDISTANCEBILLTYPE"</span><span class="p">,</span><span class="s2">"USAGE"</span><span class="p">,</span><span class="s2">"RATEPLAN"</span><span class="p">,</span><span class="w">  </span><span class="s2">"GENDER"</span><span class="p">,</span><span class="s2">"STATUS"</span><span class="p">,</span><span class="s2">"CHILDREN"</span><span class="p">,</span><span class="s2">"ESTINCOME"</span><span class="p">,</span><span class="s2">"CAROWNER"</span><span class="p">,</span><span class="s2">"AGE"</span><span class="p">],</span>
+<span class="nt">"values"</span><span class="p">:[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s2">"Auto"</span><span class="p">,</span><span class="s2">"FreeLocal"</span><span class="p">,</span><span class="s2">"Standard"</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s2">"F"</span><span class="p">,</span><span class="s2">"M"</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="w">    </span><span class="mi">23000</span><span class="p">,</span><span class="s2">"N"</span><span class="p">,</span><span class="mi">45</span><span class="p">]]</span>
+<span class="p">}</span>
+<span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Then click <strong>Predict</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/TestDeploymentProd.png"></p>
+</li>
+<li>
+<p>The prediction for this input data is shown.</p>
+<p><img alt="Screenshot" src="../images/cicd/TestDeploymentProd2.png"></p>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>At this point you’ve seen how to run a notebook leveraging cpdctl tool to propagate assets from one deployment space to another. You can create and schedule a job to run periodically and execute this sample notebook.</p>
+</div>
+<h2 id="exercise-2-git-based-flow">Exercise 2 – Git-based Flow</h2>
+<h3 id="introduction_2">Introduction</h3>
+<p>In this part of the workshop, we are going to use Git based automation where data assets and source code are checked into a git repository for source code management, and automation is leveraged for testing and validation in UAT and production environments. Effectively we are propagating source code only and training and deploying models in each of the environments based on the notebooks.</p>
+<p><strong>Git-based deployment flow:</strong>
+<img alt="Screenshot" src="../images/cicd/image10.png"></p>
+<p>The figure above illustrates a typical deployment process of AI models following a governed MLOps methodology applied through Git integration. Typically, the enterprise would have separate clusters or namespaces (depending on isolation needs) to support the various stages of development (training / developing), validation (evaluation/pre-production) and deploying AI (production) models. Figure 1 depicts three git branches: <strong>dev</strong> (development), <strong>uat</strong> (user-acceptance testing), and <strong>prd</strong> (production) that correspond to the development, pre-production, and production clusters.</p>
+<p>Data scientists mainly operate in the development cluster and interact with the git <strong>dev</strong> branch. Data scientists leverage the development cluster for experimentation and exploration where they collaborate with other <strong><em>data scientists</em></strong>, <strong><em>data engineers</em></strong>, and <strong><em>business SMEs</em></strong> to identify the right data sets and train the best performing AI models.</p>
+<p>As denoted in the figure, there are typically multiple forks off the dev git branch to add features for improving the AI model. Once satisfied with the AI model that delivers best performance, data scientists check the code and assets into the git dev branch via pull requests. The data science project lead, who owns the dev git branch, approves the submitted pull requests and tests the notebook and model.</p>
+<p>After review (and there could be a few back-and-forth interactions), the lead data scientist would create a pull request (sometimes also referred to as merge request) to propagate the assets (notebooks) to the uat git branch for testing in the UAT environment, which typically references different data stores than the DEV environment.</p>
+<p>Deployment of the assets in the UAT environment (from the uat branch) is typically done via automation, also known as GitOps. A general policy in many organizations mandates that deployment of applications, which includes data science assets, is always fully automated without human intervention. First, this helps to streamline the processes but moreover, it reduces the risk of failing installations because the exact same process is executed in multiple stages before it reaches production.</p>
+<p>Automation would pull the assets from the uat git branch into the pre-production cluster to retrain the AI model and run validation testing against such model. The data used for validation is different from the data used for training and initial testing of the AI model. Validation is executed on the data assets in the uat branch.</p>
+<p>Once UAT validation tests are concluded, the final assets (code and data assets) are checked into production git branch via a pull request. The MLOps team lead reviews and approves the pull request to propagate the assets into the production git branch. Automation would pick up the assets from the production git branch and push those into the production cluster where the code is run to re-train the AI model and validate the performance. Assuming all performance checks meet expected targets, the model is deployed in the production cluster and is ready for inferencing at scale.</p>
+<h3 id="preparing-the-git-environment">Preparing the Git environment</h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>We have already prepared a Git repository that consists of 3 branches: prd (production), uat (UAT) and dev (development):     <a href="https://github.com/CP4DModelOps/mlops-churn-prediction">https://github.com/CP4DModelOps/mlops-churn-prediction</a>.</p>
+<p>In this exercise you will create a fork of this repository to your own GitHub organization which you will create.</p>
+</div>
+<ol>
+<li>
+<p>Go to <a href="https://github.com">https://github.com</a> and login. If you don't have a Github account, you can create one for free.</p>
+</li>
+<li>
+<p>Click on your user at the right top of the screen and go to <strong>Settings</strong></p>
+<p><img alt="Screenshot" src="../images/cicd/gitops01.png"></p>
+</li>
+<li>
+<p>Click <strong>Organizations</strong> in the left-side menu, then <strong>New organization</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops02.png"></p>
+</li>
+<li>
+<p>Click <strong>Create a free organization</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops03.png"></p>
+</li>
+<li>
+<p>Enter the <strong>Organization account name</strong>, for example
+    “MLOps-&lt;your_full_name&gt;”. The name must be unique so you may
+    have to be creative. Also enter your e-mail address. Select
+    <strong>My personal account</strong>, Verify that you're human, accept the terms,
+    then click <strong>Next</strong></p>
+<p><img alt="Screenshot" src="../images/cicd/gitops04.png"></p>
+</li>
+<li>
+<p>On the next screen, just click “Complete Setup” and then “Submit”</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops05.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Now you have a new github.com organization which you can use to fork the training repository.</p>
+</div>
+</li>
+<li>
+<p>Go to <a href="https://github.com/CP4DModelOps/mlops-churn-prediction">https://github.com/CP4DModelOps/mlops-churn-prediction</a> and click the Fork button at the right top of the page.  </p>
+<p><img alt="Screenshot" src="../images/cicd/gitops06.png"></p>
+</li>
+<li>
+<p>Select the organization you just created from the list and <strong>uncheck</strong> the option "Copy the prd branch only". Then click <strong>Create fork</strong></p>
+<p><img alt="Screenshot" src="../images/cicd/gitops07.png"></p>
+</li>
+<li>
+<p>GitHub will fork the repository and then show it. Click the area that says <strong>3 branches</strong> and check that you have 3 branches: prd (default), uat and dev.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops08.png"></p>
+<p><img alt="Screenshot" src="../images/cicd/gitops09.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>We will now set up a branch protection rule to simulate a “real” scenario where pull requests have to be approved before being merged.</p>
+</div>
+</li>
+<li>
+<p>Click on <strong>Settings</strong> and then <strong>Branches</strong> on the left-hand side.
+    You will see that there are no branch protection rules have been set
+    up yet. To protect the uat and prd branches we will create these
+    rules. Click <strong>Add branch protection rule</strong> </p>
+<p><img alt="Screenshot" src="../images/cicd/gitops10.png"></p>
+</li>
+<li>
+<p>Create a new rule for the uat branch. Enter <strong>uat</strong> for the Branch name pattern and select the <strong>Require a pull request before merging</strong> checkbox.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops11.png"></p>
+<p>also scroll down and select the <strong>Restrict who can push to matching
+branches</strong> checkbox. Then click <strong>Create</strong>:</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops12.png"></p>
+</li>
+<li>
+<p>Repeat the above steps for the <strong>prd</strong> branch.</p>
+</li>
+<li>
+<p>When done you should see the following branch protection rules:</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops13.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>As your organization only has a single user (yourself) and you are the administrator, we cannot truly set up a formal approval process in which data scientists only have write access to the repository and the MLOps staff can approve requests. In an actual implementation, the production branch could also reside in an upstream repository with different permissions. Setting up the GitHub topology with different repositories and teams is beyond the scope of this workshop.</p>
+</div>
+</li>
+</ol>
+<h3 id="watson-studio-integration">Watson Studio integration</h3>
+<p>Now that you have finished creating your repository, we can start integrating it with Watson Studio in Cloud Pak for Data. Watson Studio needs to be given access to your repository via a token.</p>
+<ol>
+<li>
+<p>Click on your user at the right top of the page and select
+   <strong>Settings</strong>.  </p>
+<p><img alt="Screenshot" src="../images/cicd/gitops01.png"></p>
+</li>
+<li>
+<p>Scroll down until you see <strong>Developer settings</strong> in the left sidebar and click on it.</p>
+<p><img alt="Screenshot" src="../images/cicd/DeveloperSettings.png"></p>
+</li>
+<li>
+<p>Click on <strong>Personal access tokens &gt; Tokens (classic)</strong> then <strong>Generate new token &gt; Generate new token (classic)</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops14.png"></p>
+</li>
+<li>
+<p>Enter the name of the token and ensure the <strong>repo</strong> box is checked. Then scroll down and click <strong>Generate token</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops15.png">
+<img alt="Screenshot" src="../images/cicd/gitops15b.png"></p>
+</li>
+<li>
+<p>The token is displayed only once; make sure you copy it. You will need it <strong>multiple times</strong> during the following steps.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops16.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In IBM Cloud Pak for data, a project is how you organize your resources to achieve a particular goal. A project allows for high-level isolation, enabling users to package their project assets independently for different use cases or departments. Your project resources can include data, collaborators, scripts, and analytic assets like notebooks and models.</p>
+</div>
+</li>
+</ol>
+<h3 id="creating-a-git-enabled-project">Creating a Git-enabled project</h3>
+<ol>
+<li>
+<p>Go to All projects by clicking on the Navigation menu and selecting <strong>Projects &gt; All projects</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/Projects.png"></p>
+</li>
+<li>
+<p>Click on <strong>New project</strong> to create a new project.</p>
+<p><img alt="Screenshot" src="../images/cicd/CreateProjects.png"></p>
+</li>
+<li>
+<p>Select the <strong>Create a project integrated with a Git repository</strong> option.</p>
+<p><img alt="Screenshot" src="../images/cicd/CreateProjectGit.png"></p>
+</li>
+<li>
+<p>On the <strong>New project</strong> page, provide the Name <strong><em>&lt;YourUser&gt;-mlops-dev</em></strong> and. For integration type, select the <strong>Default Git integration</strong>. You will need to upload the GitHub token you generated before token to connect to your Git repository. Click the <strong>New Token</strong> link.</p>
+<p><img alt="Screenshot" src="../images/cicd/MLopsToken.png"></p>
+</li>
+<li>
+<p>On the Git integration pop-up, select <strong>Github</strong>, provide your git access token and give it a name for reference: <strong><em>&lt;YourUser&gt;-mlopstoken</em></strong>. Click <strong>Continue</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/MlopsToken2.png"></p>
+</li>
+<li>
+<p>Next click the token drop down and select the token you created <strong><em>&lt;YourUser&gt;-mlopstoken</em></strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/MLopsToken3.png"></p>
+</li>
+<li>
+<p>Next step is to provide the GitHub repository and branch to associate with your project.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The rest of the instructions in this module reference the following repository: <strong><a href="https://github.com/MLOps-DataScience/mlops-churn-prediction">https://github.com/MLOps-DataScience/mlops-churn-prediction</a></strong> but you will reference your own repository you forked from the upstream repository.</p>
+</div>
+<p>For the Repository URL field, provide HTTPS reference for your Git repository. You can copy this by clicking on the <strong>Code</strong> button in the <strong>Code</strong> tab, then then the <strong>Copy</strong> button indicated by the red arrow below.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops17.png"></p>
+</li>
+<li>
+<p>Go back to your Create project window and paste the URL in the <strong>Repository URL</strong> field. Then, set teh Branch field to <strong>dev</strong>. Click <strong>Create</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/DevGitProject.png"></p>
+</li>
+<li>
+<p>You should see a pop-up message stating that the project is created successfully. Click on the <strong>View new project</strong> link to navigate to the new project.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If the completion windows does not show up after about 5 minutes, refresh the page and check if the project was cloned successfully.</p>
+</div>
+<p><img alt="Screenshot" src="../images/cicd/MLops_devSC.png"></p>
+</li>
+<li>
+<p>Take a few minutes to review the project information. The <strong>Overview</strong> tab provides general information about the project like Date created, the Collaborations, and Storage used. Click the <strong>Manage</strong> tab.</p>
+<p><img alt="Screenshot" src="../images/cicd/ManageGitProject.png"></p>
+</li>
+<li>
+<p>Click <strong>Access Control</strong> option to review which users have access to the platform. In this case, you're the only collaborator in this project.</p>
+<p><img alt="Screenshot" src="../images/cicd/AccessControlPJGit.png"></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can add other users or user groups and assign them the relevant permissions to collaborate on this project. Typically, a data science project involves multiple users and roles who collaborate on developing and evaluating AI models.    </p>
+</div>
+</li>
+<li>
+<p>Click the <strong>Assets</strong> tab to review the assets associated with the project. Only the <em>CUSTOMER_DATA_ready.csv</em> file is shown as an asset. Notebooks and other data assets can be found from the JupyterLab interface.  </p>
+<p><img alt="Screenshot" src="../images/cicd/gitops20.png"></p>
+</li>
+<li>
+<p>Now you can start working with JupyterLab IDE in this Git-integrated project. Click on the <strong>Launch IDE</strong> link at the top of the page and select <strong>JupyterLab</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/CheckIDE.png"></p>
+</li>
+<li>
+<p>On the panel that shows up, select <strong>JupyterLab with IBM Runtime 23.1 on Python 3.10</strong> and click <strong>Launch</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/SelectRuntime.png"></p>
+</li>
+<li>
+<p>Once JupyterLab has started, take some time to look at the different areas of the workpace:</p>
+<ul>
+<li>
+<p>On the far-left side (marked with a red box) you can browse the folder contents, view the active kernels and other tabs and view the Git repository state such as current branch and any changes that have already been done.</p>
+</li>
+<li>
+<p>Also on the left-hand side (annotated with a blue box) you see the “root” folder of the repository with the <strong>assets</strong> folder. This is the folder where the input files and notebooks are held.  </p>
+</li>
+<li>
+<p>The middle part (marked by an amber box) is used to create new
+notebooks, open an Python console, a shell terminal and a few other
+applications.</p>
+</li>
+</ul>
+<p><img alt="Screenshot" src="../images/cicd/JLStarted.png"></p>
+</li>
+<li>
+<p>In this exercise, you are going to make a change to an existing notebook. First, make sure we make the changes in a “feature” branch so that can validate the changes without changing the notebook that may be used by other team members.</p>
+<p>Click on the <strong><em>Git</em></strong> icon at the far left as indicated by the red arrow.</p>
+<p><img alt="Screenshot" src="../images/cicd/image49.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You will see multiple branches in the current Git project (dev, origin/HEAD, origin/dev, origin/uat and origin/prd) and your current branch is <strong>dev</strong>.</p>
+</div>
+</li>
+<li>
+<p>Click <strong>Current branch</strong> to show all branch options, then create a new branch by clicking the <strong>New Branch</strong> button.</p>
+<p><img alt="Screenshot" src="../images/cicd/image49b.png"></p>
+</li>
+<li>
+<p>A new window appears in which you can enter the name of the new branch. Use <strong>optimize-churn-model</strong> name. Then click <strong>Create Branch</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/image50.png"></p>
+</li>
+<li>
+<p>Click the <strong>folder icon</strong>, then vavigate to the folder <strong>assets/notebooks</strong>. Then, open the <strong>customer-churn-prediction.ipynb</strong> notebook by double-clicking it.</p>
+<p><img alt="Screenshot" src="../images/cicd/image51.png">
+<img alt="Screenshot" src="../images/cicd/image51b.png">
+<img alt="Screenshot" src="../images/cicd/image51c.png"></p>
+</li>
+<li>
+<p>Scroll down to the section above <strong>Evaluate</strong> and notice the accuracy of the model. This is currently approximately 0.92.</p>
+<p><img alt="Screenshot" src="../images/cicd/image52.png"></p>
+</li>
+<li>
+<p>Scroll up to where the data is split and change the <strong>test_size</strong> from 0.4 to <strong>0.2</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/image53.png"></p>
+</li>
+<li>
+<p>Save the notebook by clicking the disk at the top left of the notebook.</p>
+<p><img alt="Screenshot" src="../images/cicd/image54.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In a real scenario, the Data Scientist would run the notebook to check the accuracy of the model and validate that the change was positive.</p>
+</div>
+</li>
+<li>
+<p>Assume that you’ve run the notebook and you're happy with the change results and you wish to promote the model to the <strong>dev</strong> environment. Open the <strong>Git</strong> panel.</p>
+<p>Note that the notebook you changed appears in the list of “Changed” files:</p>
+<p><img alt="Screenshot" src="../images/cicd/image56.png"></p>
+</li>
+<li>
+<p>Click on the notebook and then on the “+” sign to stage the change for commit.</p>
+<p><img alt="Screenshot" src="../images/cicd/image57.png"></p>
+<p>The notebook will now appear in the list of “Staged” files.</p>
+</li>
+<li>
+<p>Enter a meaningful message in the “Summary” field and click the <strong>Commit</strong> button.</p>
+<p><img alt="Screenshot" src="../images/cicd/image58.png"></p>
+</li>
+<li>
+<p>The change is still only local to JupyterLab. To make it available in the Git repository, you need to synchronize. Click on the <strong>cloud button</strong> to push the changes to the remote repository.</p>
+<p><img alt="Screenshot" src="../images/cicd/image59.png"></p>
+</li>
+<li>
+<p>You can now go to your repository on GitHub, refresh the page and
+    select the new branch that you created. Then, click <strong>1 commit ahead</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops21.png"></p>
+</li>
+<li>
+<p>As you want the data science lead to review your changes, create a pull request. Please pay attention to ensure you are creating a pull request for your own repository. You will find that GitHub assumes you want to create a pull request to the upstream repository (CP4DModelOps/mlops-churn-prediction). Set the <strong>base repository</strong> box to your own repository.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops22.png"></p>
+<p>Select the <strong>dev</strong> branch of your own.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops23.png"></p>
+</li>
+<li>
+<p>GitHub indicates that it is able to merge the changes automatically(Able to merge). Click the <strong>Create pull request</strong> button to request the changes to be merged into the dev branch.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops24.png"></p>
+<p>Then click <strong>Create pull request</strong> again.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops25.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>In a real-case scenario, the Data Scientist lead would receive an e-mail informing that a pull request is ready to be reviewed. The next steps would be carried out by them.</p>
+</div>
+</li>
+<li>
+<p>Let's approve and merge the pull request. Click on the <strong>Pull requests</strong> link at the top. You will see a list of all pull requests Click the pull request to open it.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops26.png"></p>
+</li>
+<li>
+<p>See that the request consists of 1 commit and only 1 file was changed. Click on the <strong>Files changed</strong> box to see the details of what was changed.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops27.png"></p>
+<p>The file is not nicely formatted as a notebook but it is quite easy
+to identify the changes that have been made. If wanted you can click
+on the ellipses indicated by the red oval and select <strong>View file</strong>
+to display the file in a notebook format.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops28.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The data scientist lead is happy with the changes and will now approve and merge the changes to the <strong>dev</strong> branch. As we only have one user for this repository, we cannot approve our own pull request. Normally, the lead data scientist would use the <strong>Review changes</strong> button to approve the request.</p>
+</div>
+</li>
+<li>
+<p>Click your browser’s <strong>“back”</strong> button to go to the pull request.</p>
+</li>
+<li>
+<p>Go back to the Pull Request. Then click the <strong>Merge pull request</strong> button to merge the changes with the <strong>dev</strong> branch.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops29.png"></p>
+<p>Then, click <strong>Confirm merge</strong>.</p>
+<p><img alt="Screenshot" src="../images/cicd/gitops30.png"></p>
+<p>GitHub confirms that the pull request has been successfully merged and closed. As a good practice to keep the repository clean, delete the branch by clicking the <strong>Delete branch</strong> button.  </p>
+<p><img alt="Screenshot" src="../images/cicd/gitops31.png"></p>
+</li>
+<li>
+<p>Now the <strong>dev</strong> branch has been updated with the change. This is how MLOps works with the git integration. Next steps would be to promote the change to the UAT and Production branches, and to deploy the model to each correspondent Deployment Space.</p>
+</li>
+<li>
+<p>Go to your Cloud Pak for Data window. <strong>Log off as the datascientist</strong>
+    <strong>user and log in as the data scientist lead</strong> (<strong>dslead</strong> user) and
+    navigate to the <strong>mlopsdev</strong> project. Open it and start JupyterLab
+    like you did before.</p>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You've reached the end of this lab.</p>
+</div></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 IBM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.top", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.tracking", "navigation.instant", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8fd75fb4.min.js"></script>
+      
+    
+  </body>
+</html>
