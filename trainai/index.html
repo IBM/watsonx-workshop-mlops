@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#data-preparation-with-data-refinery" class="md-skip">
+        <a href="#creating-an-ai-use-case" class="md-skip">
           Skip to content
         </a>
       
@@ -467,7 +467,7 @@
           
   
   <span class="md-ellipsis">
-    Train AI
+    1. Train AI
   </span>
   
 
@@ -478,7 +478,7 @@
         
   
   <span class="md-ellipsis">
-    Train AI
+    1. Train AI
   </span>
   
 
@@ -498,6 +498,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#creating-an-ai-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an AI Use Case
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-preparation-with-data-refinery" class="md-nav__link">
     <span class="md-ellipsis">
       Data Preparation with Data Refinery
@@ -510,6 +519,33 @@
   <a href="#train-autoai-model-for-churn-prediction" class="md-nav__link">
     <span class="md-ellipsis">
       Train AutoAI Model for Churn Prediction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#track-your-model-in-the-ai-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Track your Model in the AI use case
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-your-model-for-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy your Model for testing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#track-your-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Track your deployment
     </span>
   </a>
   
@@ -544,7 +580,7 @@
         
   
   <span class="md-ellipsis">
-    MLOps CI/CD
+    2. MLOps CI/CD
   </span>
   
 
@@ -565,7 +601,7 @@
         
   
   <span class="md-ellipsis">
-    AI Pipelines
+    3. AI Pipelines
   </span>
   
 
@@ -586,7 +622,7 @@
         
   
   <span class="md-ellipsis">
-    Monitor AI
+    4. Monitor AI
   </span>
   
 
@@ -696,6 +732,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#creating-an-ai-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creating an AI Use Case
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#data-preparation-with-data-refinery" class="md-nav__link">
     <span class="md-ellipsis">
       Data Preparation with Data Refinery
@@ -708,6 +753,33 @@
   <a href="#train-autoai-model-for-churn-prediction" class="md-nav__link">
     <span class="md-ellipsis">
       Train AutoAI Model for Churn Prediction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#track-your-model-in-the-ai-use-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      Track your Model in the AI use case
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deploy-your-model-for-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deploy your Model for testing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#track-your-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Track your deployment
     </span>
   </a>
   
@@ -737,26 +809,65 @@
                   
 
 
-  <h1>Train AI</h1>
+  <h1>1. Train AI</h1>
 
-<div><p>In this lab, you will assume the role of a Data Scientist, who typically trains and evaluates AI models. The following data sets will be used:</p>
+<div><p>In this lab, you will assume the role of a Data Scientist, who typically trains and evaluates AI models. The following data sets will be used, download them now:</p>
 <ul>
 <li>
-<p><strong>CUSTOMER_PERSONAL_INFORMATION</strong>: This dataset captures personal information of the customers such as gender, marital status, income, age, and similar data.</p>
+<p><a href="../assets/data/customer_personal_info_simplified.csv"><strong>customer_personal_info_simplified</strong></a>: This dataset captures personal information of the customers such as gender, marital status, income, age, and similar data.</p>
 </li>
 <li>
-<p><strong>CUSTOMER_TRANSACTION_DATA</strong>: This dataset captures the transaction data for customers.</p>
+<p><a href="../assets/data/customer_data_transactions.csv"><strong>customer_data_transactions</strong></a>: This dataset captures the transaction data for customers.</p>
 </li>
 <li>
-<p><strong>customer_churn_labels</strong>: This dataset captures information about whether a specific customer did churn or not.</p>
+<p><a href="../assets/data/customer_churn_labels.csv"><strong>customer_churn_labels</strong></a>: This dataset captures information about whether a specific customer did churn or not.</p>
 </li>
 </ul>
-<div class="admonition danger">
-<p class="admonition-title">IMPORTANT</p>
-<p>Make sure you downloaded all assets in the <a href="../assets/">Assets used</a> section, as these datasets are included there.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you have issues downloading the data assets, try downloading them from the section <a href="../assets/">Assets used</a>, as these datasets are included there too.</p>
 </div>
+<h2 id="creating-an-ai-use-case">Creating an AI Use Case</h2>
+<p>The government of ML Models is managed from AI Use Cases. These AI Use Cases document the whole lifecycle of your models, from the initial planning to the monitoring of models in Production.</p>
+<p>This capability is provided by either the service FactSheets or watsonx.governance.</p>
+<ol>
+<li>
+<p>Go to menu <strong>AI Governance &gt; AI use cases</strong>.</p>
+<p><img alt="Screenshot" src="../images/trainai/aiUseCases.png"></p>
+</li>
+<li>
+<p>Click <strong>New AI use case</strong>.</p>
+<p><img alt="Screenshot" src="../images/trainai/createUseCase.png"></p>
+</li>
+<li>
+<p>Insert the following information to create your AI Use Case for predicting your customers' churn:</p>
+<ul>
+<li><strong>Name</strong>: "&lt;YourUser&gt; Churn Prediction" (for example: user0 Churn Prediction)</li>
+<li><strong>Risk Level</strong>: Set whatever risk level you want for this use case</li>
+<li><strong>Inventory</strong>: AI_inventory</li>
+<li><strong>Purpose</strong>: "Predict if customers are going to churn"</li>
+<li><strong>Status</strong>: "Awaiting development"</li>
+<li><strong>Tags</strong>: "Churn"</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Note all the available values in Status. This field documents all the lifecycle stages</p>
+</div>
+<p>Then click <strong>Create</strong>.</p>
+<p><img alt="Screenshot" src="../images/trainai/newUseCase.png"></p>
+</li>
+<li>
+<p>Your new AI Use Case has been created. All the deployment, training, promoting, and monitoring actions related to this use case will be documented here. Click <strong>Lifecycle</strong>.</p>
+<p><img alt="Screenshot" src="../images/trainai/useCase.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>You could create different approaches to this use case, and track your models in the approach each of them is using. In this workshop we'll just use the Default approach, so no additional action is needed.</p>
+</div>
+<p><img alt="Screenshot" src="../images/trainai/defaultApproach.png"></p>
+</li>
+</ol>
 <h2 id="data-preparation-with-data-refinery">Data Preparation with Data Refinery</h2>
-<p>The first task you will execute is data preparation using <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/latest?topic=services-data-refinery">Data Refinery</a>, a visual UI-based tool that enables users to interactively discover, cleanse and transform data with over 100 built-in operations.</p>
+<p>Before creating your ML model, you will prepare data using <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/latest?topic=services-data-refinery">Data Refinery</a>, a visual UI-based tool that enables users to interactively discover, cleanse and transform data with over 100 built-in operations.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>In IBM Cloud Pak for Data, a <strong>Project</strong> is how you organize your resources to achieve a particular goal. A project allows for high-level isolation, enabling users to package their project assets independently for different use cases or departments. Your project resources can include data, collaborators, scripts, and analytic assets like notebooks and models.</p>
@@ -792,8 +903,8 @@
 <li>
 <p>Either drag and drop or browse the <a href="../assets/data/customer_personal_info_simplified.csv">customer_personal_info_simplified.csv</a> file that you downloaded into the <strong>Drop files here or browse</strong> box. Wait for the file to upload to the project. Then, repeat it for the other csv files:</p>
 <ul>
-<li><strong>customer_data_transactions.csv</strong></li>
-<li><strong>customer_churn_labels.csv</strong></li>
+<li><a href="../assets/data/customer_data_transactions.csv"><strong>customer_data_transactions.csv</strong></a></li>
+<li><a href="../assets/data/customer_churn_labels.csv"><strong>customer_churn_labels.csv</strong></a></li>
 </ul>
 <p><img alt="Screenshot" src="../images/trainai/DropDataFilesToProject.png"></p>
 </li>
@@ -1005,12 +1116,65 @@
 </div>
 <p><img alt="Screenshot" src="../images/trainai/AutoAISaveModel.png"></p>
 </li>
+</ol>
+<h2 id="track-your-model-in-the-ai-use-case">Track your Model in the AI use case</h2>
+<ol>
 <li>
 <p>Navigate back to the project assets by clicking your project's name and then clicking the <strong>Assets</strong> tab.</p>
+<p>Click on the name of your saved model <strong>&lt;YourUser&gt;_autoai_churn_prediction - P5 Extra Trees Classifier - Model</strong> to open it.</p>
+<p><img alt="Screenshot" src="../images/trainai/openModel.png"></p>
+</li>
+<li>
+<p>Feel free to check all the information available now; as the lifecycle continues, more sections will be populated.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Notice the new AutoAI experiment and the new model you created under the Watson Machine Learning models section (annotated with red rectangle). It is a good practice to publish the model to a CP4D Catalog, you could do that by clicking the 3-dot menu next to the model and selecting Publish to Catalog. In this case, we have not created catalogs for the workshop.</p>
+<p>This view contains all the governance information of your model. It includes information about the use case, how the model was trained, which data was used to train it, the evaluations of the model, the monitoring alerts...</p>
 </div>
+<p><img alt="Screenshot" src="../images/trainai/factsheet.png"></p>
+</li>
+<li>
+<p>Click <strong>Track in AI use case</strong>.</p>
+<p><img alt="Screenshot" src="../images/trainai/trackUseCase.png"></p>
+</li>
+<li>
+<p>Select your AI Use Case then click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/trainai/defineUseCase.png"></p>
+</li>
+<li>
+<p>You'll use the Default approach. You could've created different approaches for the use case. Click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/trainai/approach.png"></p>
+</li>
+<li>
+<p>You can set a version number to this specific model. In this case, it's not been tested yet, so select version 0.0.1. Then click <strong>Next</strong></p>
+<p><img alt="Screenshot" src="../images/trainai/modelVersion.png"></p>
+</li>
+<li>
+<p>Click <strong>Track asset</strong>.</p>
+<p><img alt="Screenshot" src="../images/trainai/clickTrackAsset.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The information of your model indicates that the model is in the Development phase, as it has not been deployed for testing yet.</p>
+</div>
+<p><img alt="Screenshot" src="../images/trainai/factsheet-2.png"></p>
+</li>
+<li>
+<p>Check your AI Use Case. Go to menu <em>AI Governance &gt; AI use cases</em>*.</p>
+<p><img alt="Screenshot" src="../images/trainai/aiUseCases.png"></p>
+</li>
+<li>
+<p>Then open your use case.</p>
+<p><img alt="Screenshot" src="../images/trainai/openUseCase.png"></p>
+</li>
+<li>
+<p>Go to the <strong>Lifecycle</strong> tab. This tab shows which assets are being used in each stage of the model's lifecycle. Note that your trained model has been added to the Develop step. Besides, all available model versions are shown in this view.</p>
+<p><img alt="Screenshot" src="../images/trainai/lifecycleTab.png"></p>
+</li>
+</ol>
+<h2 id="deploy-your-model-for-testing">Deploy your Model for testing</h2>
+<p>Let's promote the trained model to a UAT (Testing) Deployment Space, then deploy it so it's ready to be called for testing.</p>
+<ol>
+<li>
+<p>Navigate back to the project assets by clicking your project's name and then clicking the <strong>Assets</strong> tab.</p>
 <p>Click on the menu of your saved model <strong>&lt;YourUser&gt;_autoai_churn_prediction - P5 Extra Trees Classifier - Model</strong> then click <strong>Promote to space</strong>. Note that the name of your model may be different.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1032,7 +1196,7 @@
 <p><img alt="Screenshot" src="../images/trainai/CheckDeploymentSpace.png"></p>
 </li>
 <li>
-<p>On the <strong>churnUATspace</strong> deployment space page, your AutoAI model <strong>&lt;YourUser&gt;_autoai_churn_prediction – P7 XGBClassifier</strong> is ready to be deployed. Click on the 3-dot menu next to the model then click <strong>Deploy</strong>.</p>
+<p>On the <strong>churnUATspace</strong> deployment space page, your AutoAI model <strong>&lt;YourUser&gt;_autoai_churn_prediction – P7 XGBClassifier</strong> is ready to be deployed for consumption. Click on the 3-dot menu next to the model then click <strong>Deploy</strong>.</p>
 <p><img alt="Screenshot" src="../images/trainai/DeployModel.png"></p>
 </li>
 <li>
@@ -1068,6 +1232,55 @@
 <p>The deployed model will predict the likelihood of the user to churn given the specific values for the various features. The model returns the predicted churn label as “T” (true) or “F” (false) and the probability of that prediction which effectively expresses the likelihood of that user to churn (or not). A “T” label returned by the model indicates the user is likely to churn and the corresponding probability.</p>
 <p>These probabilities can be used in conjunction with the predicted label to better serve customers on a more granular basis. Your application can be customized to make decisions based on the predicted label and the probabilities of that prediction.</p>
 </div>
+<div class="admonition danger">
+<p class="admonition-title">IMPORTANT</p>
+<p>There's a known issue in the current version of the workshop environment that prevents the AI Use Case from automatically register that the model was deployed in a Test Space. Follow this workaround:</p>
+<ol>
+<li>
+<p>Close the prediction results window by clicking the <strong>x</strong> button:</p>
+<p><img alt="Screenshot" src="../images/trainai/closePrediction.png"></p>
+</li>
+<li>
+<p>Then go back to the Deployment Space using the breadcrumb menu:</p>
+<p><img alt="Screenshot" src="../images/trainai/goToSpace.png"></p>
+</li>
+<li>
+<p>Click your model to open it:</p>
+<p><img alt="Screenshot" src="../images/trainai/clickModel.png"></p>
+</li>
+<li>
+<p>Go to the <strong>AI Factsheet</strong> tab then click <strong>Untrack</strong>:</p>
+<p><img alt="Screenshot" src="../images/trainai/untrack.png"></p>
+</li>
+<li>
+<p>Click <strong>Untrack</strong>:</p>
+<p><img alt="Screenshot" src="../images/trainai/untrack-2.png"></p>
+</li>
+<li>
+<p>Now click <strong>Track in AI use case</strong> to enable tracking again:</p>
+<p><img alt="Screenshot" src="../images/trainai/track-2.png"></p>
+</li>
+<li>
+<p>Choose your AI Use Case and follow the same steps as you did before. Now, the <strong>Test</strong> step should be enabled because a Testing Deployment was detected:</p>
+<p><img alt="Screenshot" src="../images/trainai/nowItWorks.png"></p>
+</li>
+</ol>
+</div>
+<h2 id="track-your-deployment">Track your deployment</h2>
+<ol>
+<li>
+<p>Go to the <strong>AI use cases</strong> menu.</p>
+<p><img alt="Screenshot" src="../images/trainai/aiUseCases.png"></p>
+</li>
+<li>
+<p>Open your use case.</p>
+<p><img alt="Screenshot" src="../images/trainai/openUseCase.png"></p>
+</li>
+<li>
+<p>Go to the <strong>Lifecycle</strong> tab. Note that the AI Use Case has advanced to the Test step. The available Test deployments are shown in their Deployment Space:</p>
+<p><img alt="Screenshot" src="../images/trainai/testStep.png"></p>
+</li>
+</ol>
 <h2 id="train-churn-prediction-model-with-jupyter-notebook">Train Churn Prediction Model with Jupyter Notebook</h2>
 <p>In this section, we illustrate an alternate method for training AI models in Cloud Pak for Data, namely by using Jupyter notebook and open-source libraries. This is a very common and mostly preferred method by data scientists as it provides them with the utmost flexibility in exploring different algorithms for training best performing AI models.</p>
 <ol>

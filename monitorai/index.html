@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enabling-monitoring-for-our-model" class="md-skip">
+        <a href="#db2-connection-details" class="md-skip">
           Skip to content
         </a>
       
@@ -460,7 +460,7 @@
         
   
   <span class="md-ellipsis">
-    Train AI
+    1. Train AI
   </span>
   
 
@@ -481,7 +481,7 @@
         
   
   <span class="md-ellipsis">
-    MLOps CI/CD
+    2. MLOps CI/CD
   </span>
   
 
@@ -502,7 +502,7 @@
         
   
   <span class="md-ellipsis">
-    AI Pipelines
+    3. AI Pipelines
   </span>
   
 
@@ -530,7 +530,7 @@
           
   
   <span class="md-ellipsis">
-    Monitor AI
+    4. Monitor AI
   </span>
   
 
@@ -541,7 +541,7 @@
         
   
   <span class="md-ellipsis">
-    Monitor AI
+    4. Monitor AI
   </span>
   
 
@@ -559,6 +559,15 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#db2-connection-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Db2 connection details
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#enabling-monitoring-for-our-model" class="md-nav__link">
@@ -597,6 +606,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configure-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Drift
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configure-explainability" class="md-nav__link">
     <span class="md-ellipsis">
       Configure Explainability
@@ -609,6 +627,15 @@
   <a href="#evaluating-the-model" class="md-nav__link">
     <span class="md-ellipsis">
       Evaluating the model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-the-model-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracking the model monitoring
     </span>
   </a>
   
@@ -723,6 +750,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#db2-connection-details" class="md-nav__link">
+    <span class="md-ellipsis">
+      Db2 connection details
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enabling-monitoring-for-our-model" class="md-nav__link">
     <span class="md-ellipsis">
       Enabling monitoring for our model
@@ -759,6 +795,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configure-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Drift
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configure-explainability" class="md-nav__link">
     <span class="md-ellipsis">
       Configure Explainability
@@ -771,6 +816,15 @@
   <a href="#evaluating-the-model" class="md-nav__link">
     <span class="md-ellipsis">
       Evaluating the model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tracking-the-model-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracking the model monitoring
     </span>
   </a>
   
@@ -791,7 +845,7 @@
                   
 
 
-  <h1>Monitor AI</h1>
+  <h1>4. Monitor AI</h1>
 
 <div><div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -799,67 +853,15 @@
 <p>With multiple client engagements, we have found that having the confidence to trust AI models is just as important, and sometime even more important, than the performance of the AI models. Watson OpenScale, a component of Watson Studio and Cloud Pak for Data, is IBM’s solution to deliver trustworthy AI and enable monitoring of AI models for fairness, explainability and drift.</p>
 </div>
 <p>In this lab you will learn how to leverage Watson OpenScale to monitor the churn prediction model we previously deployed to Watson Machine Learning.</p>
-<h2 id="enabling-monitoring-for-our-model">Enabling monitoring for our model</h2>
-<ol>
-<li>
-<p>Leave your CP4D browser tab open, then open a new tab and login CP4D there. You'll use this new tab to work with OpenScale while having the rest of CP4D services available in the first tab.</p>
-</li>
-<li>
-<p>In your new tab, go to the menu <strong>Services &gt; Instances</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image1.png"></p>
-</li>
-<li>
-<p>Find the <strong>openscale-defaultinstance</strong>, click the open drop down and select <strong>Open</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image2.png"></p>
-</li>
-<li>
-<p>Click the <strong>Insights dashboard</strong> icon (first icon in the left navigation column). Then click <strong>Add to dashboard</strong> to select the model you would like to monitor.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image3.png"></p>
-</li>
-<li>
-<p>Select the Deployment Space <strong>churnUATspace</strong> where your models are deployed. Then click <strong>Next</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image16.png"></p>
-</li>
-<li>
-<p>The models deployed in this space are shown. Select your model <strong>&lt;YourUser&gt;_autoai_churn</strong> and click <strong>Next</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image17.png"></p>
-</li>
-<li>
-<p>Select the following options:</p>
-<ul>
-<li><strong>Storage type</strong>: System-managed</li>
-<li><strong>Data type</strong>: Numerical/categorical</li>
-<li><strong>Algorithm type</strong>: Binary classification</li>
-</ul>
-<p>Then click <strong>View summary</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image18.png"></p>
-</li>
-<li>
-<p>Check the summary, leave the default options, and click <strong>Finish</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image19.png"></p>
-</li>
-</ol>
-<h2 id="training-data">Training data</h2>
-<ol>
-<li>
-<p>The monitors must be configured for the model. Click <strong>Actions</strong> then <strong>Configure monitors</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image19b.png"></p>
-</li>
-<li>
-<p>Click on the pencil next to <strong>Training data</strong>. We're goint to provide a connection to our training data.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image19c.png"></p>
+<h2 id="db2-connection-details">Db2 connection details</h2>
+<p>Later in this lab, you're going to provide OpenScale the training data of the model. Watson OpenScale supports reading training data from a CSV file, from Db2, and from Cloud Object Storage (COS). The training data in this workshop is stored in CP4D's Db2.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>Review <a href="https://www.ibm.com/docs/en/cloud-paks/cp-data/latest?topic=openscale-faqs">Why does OpenScale need access to my training data</a> for more details on why the training data is needed. Some clients prefer not to share their training data and OpenScale supports that by requesting the clients provide training data statistics information which they can obtain by running through a <a href="https://github.com/IBM-Watson/aios-data-distribution/blob/master/training_statistics_notebook.ipynb">custom notebook</a> that is available on github.</p>
 </div>
-</li>
+<ol>
 <li>
-<p>Select <strong>Use manual setup</strong> then click <strong>Next</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image19d.png"></p>
-</li>
-<li>
-<p>Watson OpenScale supports reading training data from a CSV file, from Db2, and from Cloud Object Storage (COS). The training data in this workshop is stored in CP4D's Db2.</p>
-<p>You will need the Db2 Deployment ID for your environment. Go back to your old tab with CP4D (or open a new one and login CP4D there). Then go to menu <strong>Data &gt; Databases</strong>.</p>
+<p>Go to menu <strong>Data &gt; Databases</strong>.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image19e.png"></p>
 </li>
 <li>
@@ -870,8 +872,41 @@
 <p>Copy the <strong>Deployment id</strong> which you'll use in the next step. In this example, it's <em>db2oltp-1712170077943241</em>.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image19g.png"></p>
 </li>
+</ol>
+<h2 id="enabling-monitoring-for-our-model">Enabling monitoring for our model</h2>
+<ol>
 <li>
-<p>Go back to the Openscale tab. Set the following options:</p>
+<p>Go to menu <strong>Deployments</strong>:</p>
+<p><img alt="Screenshot" src="../images/monitorai/menuDeployments.png"></p>
+</li>
+<li>
+<p>Open the <strong>churnUATspace</strong> space where you deployed your initial AutoAI-generated Model for testing.</p>
+<p><img alt="Screenshot" src="../images/monitorai/churnUATSpace.png"></p>
+</li>
+<li>
+<p>In the <strong>Deployments</strong> tab, open the <strong>user0_autoai_churn</strong> one. We're going to monitor this deployed model.</p>
+<p><img alt="Screenshot" src="../images/monitorai/openYourDeployment.png"></p>
+</li>
+<li>
+<p>Go the <strong>Evaluations</strong> tab and click <strong>Configure OpenScale evaluation settings</strong>.</p>
+<p><img alt="Screenshot" src="../images/monitorai/openOpenscaleSettings.png"></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you see the following message, click <strong>Associate a server instance</strong>:</p>
+<p><img alt="Screenshot" src="../images/monitorai/associateServerInstance.png"></p>
+</div>
+<p>The following menu will appear. You're going to configure the monitors in the following section.</p>
+<p><img alt="Screenshot" src="../images/monitorai/openScaleMenu.png"></p>
+</li>
+</ol>
+<h2 id="training-data">Training data</h2>
+<ol>
+<li>
+<p>Click on the pencil next to <strong>Training data</strong>. We're going to provide a connection to our training data.</p>
+<p><img alt="Screenshot" src="../images/monitorai/image19c.png"></p>
+</li>
+<li>
+<p>Set the following options:</p>
 <ul>
 <li><strong>Storage type</strong>: Database or cloud storage</li>
 <li><strong>Location</strong>: Db2</li>
@@ -896,16 +931,13 @@
 <p><img alt="Screenshot" src="../images/monitorai/image20.png"></p>
 </li>
 <li>
-<p>For training features, accept the default which selects all the features. For Label, CHURN was automatically selected which is correct. Click <strong>Next</strong>.</p>
+<p>The label column was automatically selected. We're predicting CHURN. Click <strong>Next</strong></p>
+<p><img alt="Screenshot" src="../images/monitorai/image22a.png"></p>
+</li>
+<li>
+<p>For the feature columns, accept the default which selects all the features. Click <strong>Save</strong>.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image22.png"></p>
-</li>
-<li>
-<p>The default values are valid. Click <strong>View summary</strong>. </p>
-<p><img alt="Screenshot" src="../images/monitorai/image21.png"></p>
-</li>
-<li>
-<p>Click <strong>Finish</strong>.</p>
-<p><img alt="Screenshot" src="../images/monitorai/image21b.png"></p>
+<p>The training data has been loaded to OpenScale.</p>
 </li>
 </ol>
 <h2 id="configure-quality">Configure Quality</h2>
@@ -990,6 +1022,41 @@
 </div>
 </li>
 </ol>
+<h2 id="configure-drift">Configure Drift</h2>
+<ol>
+<li>
+<p>Go to the <strong>Drift v2</strong> tab. Then click the pencil icon to configure it.</p>
+<p><img alt="Screenshot" src="../images/monitorai/drift01.png"></p>
+</li>
+<li>
+<p>In this case, we'll use OpenScale directly to calculate possible Drift. Select <strong>Compute in Watson OpenScale</strong> and click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/monitorai/drift02.png"></p>
+</li>
+<li>
+<p>Leave the default values. Feel free to read the description of these thresholds. Click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/monitorai/drift03.png"></p>
+</li>
+<li>
+<p>In this case, all features will be considered important to detect drift. Select all features and click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/monitorai/drift04.png"></p>
+</li>
+<li>
+<p>For the root cause analysis, select the following features:</p>
+<ul>
+<li>AGE</li>
+<li>ESTINCOME</li>
+<li>GENDER</li>
+<li>RATEPLAN</li>
+<li>USAGE</li>
+</ul>
+<p>Then click <strong>Next</strong>.</p>
+<p><img alt="Screenshot" src="../images/monitorai/drift05.png"></p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+<p><img alt="Screenshot" src="../images/monitorai/drift06.png"></p>
+</li>
+</ol>
 <h2 id="configure-explainability">Configure Explainability</h2>
 <ol>
 <li>
@@ -1014,7 +1081,7 @@
 <p>Now that the model monitors have been configured, you can run an evaluation of the model.</p>
 <ol>
 <li>
-<p>Click the <strong>Insights dashboard</strong> button. Then click the tile of your model.</p>
+<p>Click the <strong>X</strong> button to close the <em>Configure monitors</em> window.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image40.png"></p>
 </li>
 <li>
@@ -1034,7 +1101,7 @@
 </div>
 </li>
 <li>
-<p>Check the results of the evaluation. in the example below, it shows no alerts Quality, meaning the model meets or exceeds the required thresholds set for those monitors. However, there's an alert for Fairness.</p>
+<p>Check the results of the evaluation. in the example below, it shows no alerts Quality, meaning the model meets or exceeds the required thresholds set for those monitors. However, there's an alert for Fairness and two alerts for Drift.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Note that your actual results may be different, and you may see different alerts.</p>
@@ -1062,7 +1129,7 @@
 <p><img alt="Screenshot" src="../images/monitorai/image46.png"></p>
 </li>
 <li>
-<p>These are the transactions that were evaluated. Choose on of them and click <strong>Explain prediction</strong>. In this example, we'll choose one with individual bias detected.</p>
+<p>These are the transactions that were evaluated. Choose one and click <strong>Explain prediction</strong>. In this example, we'll choose one with individual bias detected.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image47.png"></p>
 </li>
 <li>
@@ -1076,16 +1143,41 @@
 <p><img alt="Screenshot" src="../images/monitorai/image50.png"></p>
 </li>
 <li>
-<p>In this case, the STATUS feature should change from 'S' to 'M' for the model to predict no-churn instead of churn.</p>
+<p>In this case, the STATUS feature should change from 'M' to 'S' for the model to predict no-churn instead of churn.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image51.png"></p>
 </li>
 <li>
-<p>You can also investigate what the prediction would be if a specific feature changes to another value. For example, let's <strong>change the GENDER from F to M</strong>. Then, click <strong>Score new values</strong> to check what would be predicted in that case:</p>
+<p>You can also investigate what the prediction would be if a specific feature changes to another value. For example, let's <strong>change the AGE from 46 to 18</strong>. Then, click <strong>Score new values</strong> to check what would be predicted in that case:</p>
 <p><img alt="Screenshot" src="../images/monitorai/image52.png"></p>
 </li>
 <li>
-<p>The prediction would change to no-churn in that case, with a low confidence (55%).</p>
+<p>The prediction would change to no-churn in that case, with a confidence of 60%.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image53.png"></p>
+</li>
+</ol>
+<h2 id="tracking-the-model-monitoring">Tracking the model monitoring</h2>
+<ol>
+<li>
+<p>Go to the <strong>AI use cases</strong> menu.</p>
+<p><img alt="Screenshot" src="../images/monitorai/aiUseCases.png"></p>
+</li>
+<li>
+<p>Open your use case.</p>
+<p><img alt="Screenshot" src="../images/monitorai/openUseCase.png"></p>
+</li>
+<li>
+<p>Go to the <strong>Lifecycle</strong> tab. Note that the AI Use Case has advanced from Testing to the Validation phase. The red icon shows that there are issues in the AI Monitors of this model. Clicking the red icon shows which monitors have issues.</p>
+<p><img alt="Screenshot" src="../images/monitorai/deploymentPhase.png"></p>
+</li>
+<li>
+<p>Click the deployment name to open the details of the monitoring:</p>
+<p><img alt="Screenshot" src="../images/monitorai/clickDeploymentName.png"></p>
+</li>
+<li>
+<p>Take your time to review the results included in this phase.</p>
+<p><img alt="Screenshot" src="../images/monitorai/results01.png"></p>
+<p><img alt="Screenshot" src="../images/monitorai/results02.png"></p>
+<p><img alt="Screenshot" src="../images/monitorai/results03.png"></p>
 </li>
 </ol>
 <div class="admonition info">
