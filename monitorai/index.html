@@ -633,6 +633,24 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#reviewing-fairness-and-explainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reviewing Fairness and Explainability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reviewing Drift
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#tracking-the-model-monitoring" class="md-nav__link">
     <span class="md-ellipsis">
       Tracking the model monitoring
@@ -816,6 +834,24 @@
   <a href="#evaluating-the-model" class="md-nav__link">
     <span class="md-ellipsis">
       Evaluating the model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-fairness-and-explainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reviewing Fairness and Explainability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reviewing-drift" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reviewing Drift
     </span>
   </a>
   
@@ -1108,6 +1144,9 @@
 </div>
 <p><img alt="Screenshot" src="../images/monitorai/image42.png"></p>
 </li>
+</ol>
+<h2 id="reviewing-fairness-and-explainability">Reviewing Fairness and Explainability</h2>
+<ol>
 <li>
 <p>Click the <strong>arrow</strong> next to the Fairness monitor to review the fairness results further.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image43.png"></p>
@@ -1153,6 +1192,53 @@
 <li>
 <p>The prediction would change to no-churn in that case, with a confidence of 60%.</p>
 <p><img alt="Screenshot" src="../images/monitorai/image53.png"></p>
+</li>
+</ol>
+<h2 id="reviewing-drift">Reviewing Drift</h2>
+<ol>
+<li>
+<p>Go back to your deployment by clicking its name in the breadcrumb menu.</p>
+<p><img alt="Screenshot" src="../images/monitorai/goToDeployment.png"></p>
+</li>
+<li>
+<p>Go to the <strong>Evaluations</strong> tab then click the arrow in the <strong>Drift v2</strong> section to open the drift test details.</p>
+<p><img alt="Screenshot" src="../images/monitorai/enterDrift.png"></p>
+</li>
+<li>
+<p>Review the charts in this page. First, <strong>History</strong> chart.</p>
+<p><img alt="Screenshot" src="../images/monitorai/driftHistory.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This graph shows how the drift for the prediction (output drift), the incoming/evaluation data (feature drift), and the model quality has evolved in time. Only one evaluation was run in this case.</p>
+</div>
+</li>
+<li>
+<p>Scroll down to the <strong>Output drift</strong> chart. Note that you can see drift charts for each predicted outcome by using the dropdown option:</p>
+<p><img alt="Screenshot" src="../images/monitorai/driftOutput-1.png"></p>
+<p><img alt="Screenshot" src="../images/monitorai/driftOutput-2.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This graph shows how the prediction of the model has drifted from the training data to the input/evaluation data.</p>
+<p>In this case, we have a drift issue. We can investigate it further using the following graphs.</p>
+</div>
+</li>
+<li>
+<p>Scroll down to the <strong>Feature drift</strong> chart.</p>
+<p><img alt="Screenshot" src="../images/monitorai/driftFeature.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>This graph shows how the input/evaluated data has changed incomparison with the data that was used to train the model. This is useful to get an idea on which changes in data may have affected the model prediction accuracy, reducing analysis and investigation time.</p>
+<p>In this example, the feature LOCAL has significant changes.</p>
+</div>
+</li>
+<li>
+<p>Scroll down to the following charts.</p>
+<p><img alt="Screenshot" src="../images/monitorai/driftFeatureDetails.png"></p>
+<p><img alt="Screenshot" src="../images/monitorai/driftFeatureDetails-2.png"></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For each feature with drift, the amount of changes for each range of values is shown. Besides, the evolution this feature's drift over time is shown in the second graph.</p>
+</div>
 </li>
 </ol>
 <h2 id="tracking-the-model-monitoring">Tracking the model monitoring</h2>
